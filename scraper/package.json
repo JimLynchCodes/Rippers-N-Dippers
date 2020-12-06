@@ -1,0 +1,45 @@
+{
+  "name": "triple-trenders-scraper",
+  "version": "1.0.0",
+  "description": "A nice little script that scrapes stock data.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run scrape\"",
+    "scrape": "cypress open",
+    "scrape:headless": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/*.feature && exit 0\"",
+    "scrape:headless-show-memory": "concurrently \"npm run start:backend\" \"DEBUG=cypress:server:util:process_profiler cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/*.feature && exit 0\"",
+    "start:backend": "cd backend && npm start",
+    "start:cron": "node schedule-cron",
+    "cron:script": "echo Running cron job!",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JimLynchCodes/Super-Scraper.git"
+  },
+  "keywords": [
+    "scraper",
+    "websscraper",
+    "superscraper",
+    "super-scraper"
+  ],
+  "author": "Jim",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/JimLynchCodes/Super-Scraper/issues"
+  },
+  "homepage": "https://github.com/JimLynchCodes/Super-Scraper#readme",
+  "devDependencies": {
+    "cypress": "^4.4.0",
+    "cypress-cucumber-preprocessor": "^2.3.0",
+    "mongodb-client-encryption": "^1.0.1",
+    "node-cron": "^2.0.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "step_definitions": "cypress/integration/"
+  },
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "mongodb": "^3.5.5"
+  }
+}
