@@ -153,7 +153,6 @@ app.post('/update-bc-scrape', async (req, res) => {
         const gainerOrLoser = req.body['gainer_or_loser']
         const timeFrame = req.body['time_frame']
 
-
         console.log('Connecting to mongo at: ', mongoUri)
         console.log(`Updating scraped data for: ${stockCategory}, ${gainerOrLoser}, ${timeFrame}`)
 

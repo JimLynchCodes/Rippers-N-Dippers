@@ -8,6 +8,22 @@
     "scrape": "cypress open",
     "scrape:headless": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/*.feature && exit 0\"",
     "scrape:headless-show-memory": "concurrently \"npm run start:backend\" \"DEBUG=cypress:server:util:process_profiler cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/*.feature && exit 0\"",
+    
+    "scrape:headless-short": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-short.feature && exit 0\"",
+    "scrape:headless-short-show-memory": "concurrently \"npm run start:backend\" \"DEBUG=cypress:server:util:process_profiler cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-short.feature && exit 0\"",
+    
+    "create-db-object": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape_create-db-object.feature && exit 0\"",
+
+    "scrape:headless-largecap": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-large-cap.feature && exit 0\"",
+    "scrape:headless-midcap": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-mid-cap.feature && exit 0\"",
+    "scrape:headless-smallcap": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-small-cap.feature && exit 0\"",
+    "scrape:headless-microcap": "concurrently \"npm run start:backend\" \"cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-micro-cap.feature && exit 0\"",
+    
+    "scrape:headless-largecap-show-memory": "concurrently \"npm run start:backend\" \"DEBUG=cypress:server:util:process_profiler cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-large-cap.feature && exit 0\"",
+    "scrape:headless-midcap-show-memory": "concurrently \"npm run start:backend\" \"DEBUG=cypress:server:util:process_profiler cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-mid-cap.feature && exit 0\"",
+    "scrape:headless-smallcap-show-memory": "concurrently \"npm run start:backend\" \"DEBUG=cypress:server:util:process_profiler cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-small-cap.feature && exit 0\"",
+    "scrape:headless-microcap-show-memory": "concurrently \"npm run start:backend\" \"DEBUG=cypress:server:util:process_profiler cypress run --config video=false --spec ./cypress/integration/Triple-Trenders-Scraper/tt-scrape-micro-cap.feature && exit 0\"",
+
     "start:backend": "cd backend && npm start",
     "start:cron": "node schedule-cron",
     "cron:script": "echo Running cron job!",

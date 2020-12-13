@@ -5,8 +5,6 @@ Feature: Daily Barchart Sdvances / Declines Scraper
     @focus
     Scenario: Scraping Barchart Gainers Info
 
-        Given a bc scrape object for today with empty arrays in the database
-
         Given I'm logged in
 
         # -- Mid Cap --
@@ -65,14 +63,4 @@ Feature: Daily Barchart Sdvances / Declines Scraper
 
         Then I update the database's bc scrape object for "mid_cap_us" "losers" "1m"
 
-
-
-        # And I'm done with the backend server.
-
-
-# All US Exchanges - Today
-# TODO
-
-
-# Mid Cap (US) - Today
-# TODO
+        And I'm done with the backend server.
