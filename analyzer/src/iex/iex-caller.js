@@ -74,11 +74,11 @@ const hardcoded_iex_data = {
 
 const getKeyStatsList = async uniqueSymbols => {
 
-    // TODO - get key stats for _all_, not just first two gainers... (batch in calls of 100)
-
     console.log('uniqueSymbols ', uniqueSymbols)
 
-    const firstTwoGainerSymbols = uniqueSymbols.splice(0, 5).join(',')
+    // TODO - get key stats for _all_ stocks when running for real, not just a small subset... (batch in calls of 100 symbols)
+
+    const firstTwoGainerSymbols = uniqueSymbols.splice(5, 15).join(',')
 
     const url = process.env.IEX_BASES_URL + '/stock/market/batch?types=stats&symbols=' +
         firstTwoGainerSymbols + '&token=' + process.env.IEX_KEY
@@ -92,7 +92,6 @@ const getKeyStatsList = async uniqueSymbols => {
     return axios.get(url).then( response => response.data )
     
 }
-
 
 module.exports = {
     getKeyStatsList
