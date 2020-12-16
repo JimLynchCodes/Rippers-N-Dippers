@@ -33,7 +33,7 @@ Given(`a bc scrape object for today with empty arrays in the database`, async ()
 
 })
 
-Then(`I update the database's bc scrape object for {string} {string} {string}`, async (stockCategory, gainerOrLoser, timeFrame) => {
+Then(`I update the database's bc scrape object for {string} {string} {string}`, async (stockCategory, trenderOrLoser, timeFrame) => {
 
     /**
      *  Calls out to (locally running) backend-lambda process which connects to the database and inserts scraped data.
@@ -51,7 +51,7 @@ Then(`I update the database's bc scrape object for {string} {string} {string}`, 
         collection: mongoCollection,
         database_name: mongoDatabaseName,
         stock_category: stockCategory,
-        gainer_or_loser: gainerOrLoser,
+        trender_or_loser: trenderOrLoser,
         time_frame: timeFrame
     })
         .then(response => {

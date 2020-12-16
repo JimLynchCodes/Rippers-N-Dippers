@@ -68,7 +68,7 @@ app.post('/save', async (req, res) => {
             date_scraped: currentDate,
             categories: {
                 large_cap_us: {
-                    gainers: {
+                    trenders: {
                         'today': [],
                         '5d': [],
                         '1m': [],
@@ -80,7 +80,7 @@ app.post('/save', async (req, res) => {
                     },
                 },
                 mid_cap_us: {
-                    gainers: {
+                    trenders: {
                         'today': [],
                         '5d': [],
                         '1m': [],
@@ -92,7 +92,7 @@ app.post('/save', async (req, res) => {
                     },
                 },
                 small_cap_us: {
-                    gainers: {
+                    trenders: {
                         'today': [],
                         '5d': [],
                         '1m': [],
@@ -104,7 +104,7 @@ app.post('/save', async (req, res) => {
                     },
                 },
                 micro_cap_us: {
-                    gainers: {
+                    trenders: {
                         'today': [],
                         '5d': [],
                         '1m': [],
@@ -150,11 +150,11 @@ app.post('/update-bc-scrape', async (req, res) => {
         const databaseName = req.body['database_name']
 
         const stockCategory = req.body['stock_category']
-        const gainerOrLoser = req.body['gainer_or_loser']
+        const trenderOrLoser = req.body['trender_or_loser']
         const timeFrame = req.body['time_frame']
 
         console.log('Connecting to mongo at: ', mongoUri)
-        console.log(`Updating scraped data for: ${stockCategory}, ${gainerOrLoser}, ${timeFrame}`)
+        console.log(`Updating scraped data for: ${stockCategory}, ${trenderOrLoser}, ${timeFrame}`)
 
         MongoClient.connect(mongoUri, (err, db) => {
 
@@ -174,10 +174,10 @@ app.post('/update-bc-scrape', async (req, res) => {
 
             const todaysObjQuery = { date_scraped: currentDate };
 
-            const nestedFieldToUpdate = `categories.${stockCategory}.${gainerOrLoser}.${timeFrame}`
+            const nestedFieldToUpdate = `categories.${stockCategory}.${trenderOrLoser}.${timeFrame}`
 
             const newvalues = {
-                $set: { [nestedFieldToUpdate]: scrapedData[stockCategory][gainerOrLoser][timeFrame] }
+                $set: { [nestedFieldToUpdate]: scrapedData[stockCategory][trenderOrLoser][timeFrame] }
             }
 
             console.log('res? ', res)
