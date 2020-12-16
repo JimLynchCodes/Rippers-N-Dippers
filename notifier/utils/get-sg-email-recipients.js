@@ -1,4 +1,4 @@
-const logger = require('./logger')
+const logger = require('../logger')
 
 const getSendgridTripleTrendersEmailRecipients = listId => {
 
@@ -16,7 +16,7 @@ const getSendgridTripleTrendersEmailRecipients = listId => {
     await client.request(request)
       .then(data => {
 
-        const emailAddressesForTgSubscribers = data[0].body.result
+        const emailAddressesForTtSubscribers = data[0].body.result
         .filter(userObj => {
           return userObj.list_ids.includes(listId)
         })
@@ -24,7 +24,7 @@ const getSendgridTripleTrendersEmailRecipients = listId => {
           return userObj.email
         })
         
-        resolve(emailAddressesForTgSubscribers)
+        resolve(emailAddressesForTtSubscribers)
         
       }, err => {
         logger.log('err getting contacts! ', err)
