@@ -12,7 +12,7 @@ const sortByRankings = require('./rankings/sorter/rankings-sorter').sortByRankin
 const logger = require('./utils/logger')
 
 /**
- *  Analyzes scraped US sector data (triple gainer's algo) for the current day.
+ *  Analyzes scraped US sector data (triple trender's algo) for the current day.
  */
 
 const main2 = async () => {
@@ -29,14 +29,14 @@ const main2 = async () => {
         const uniqueSymbols = getUniqueSymbols(scrapedData)
 
         const keyStats = {
-            gainers: await iexCaller.getKeyStatsList(uniqueSymbols.gainers),
+            trenders: await iexCaller.getKeyStatsList(uniqueSymbols.trenders),
             losers: await iexCaller.getKeyStatsList(uniqueSymbols.losers),
         }
 
         // console.log('key stats are: ', JSON.stringify(keyStats))
         
         const ttStatsWithoutRankings = {
-            trending_upwards: iexStatsToTtStats(keyStats.gainers),
+            trending_upwards: iexStatsToTtStats(keyStats.trenders),
             trending_downwards: iexStatsToTtStats(keyStats.losers)
         }
         
@@ -67,13 +67,13 @@ const main2 = async () => {
 const getUniqueSymbols = (scrapedData) => {
 
     let uniqueSymbols = {
-        gainers: [],
+        trenders: [],
         losers: []
     }
 
-    Object.entries(scrapedData['categories']).forEach(([marketCap, gainersAndLosers]) => {
+    Object.entries(scrapedData['categories']).forEach(([marketCap, trendersAndLosers]) => {
 
-        Object.entries(gainersAndLosers).forEach(([gainerOrLoser, timePeriodData]) => {
+        Object.entries(trendersAndLosers).forEach(([trenderOrLoser, timePeriodData]) => {
 
             Object.entries(timePeriodData).forEach(([timePeriod, stocksData]) => {
 
@@ -81,10 +81,10 @@ const getUniqueSymbols = (scrapedData) => {
 
                 const symbols = symbolsWithHeaders.slice(1)
 
-                uniqueSymbols[gainerOrLoser] = [...symbols, ...uniqueSymbols[gainerOrLoser]]
+                uniqueSymbols[trenderOrLoser] = [...symbols, ...uniqueSymbols[trenderOrLoser]]
             })
 
-            uniqueSymbols[gainerOrLoser] = Array.from(new Set(uniqueSymbols[gainerOrLoser]))
+            uniqueSymbols[trenderOrLoser] = Array.from(new Set(uniqueSymbols[trenderOrLoser]))
 
         })
     })

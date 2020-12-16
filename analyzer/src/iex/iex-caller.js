@@ -78,10 +78,10 @@ const getKeyStatsList = async uniqueSymbols => {
 
     // TODO - get key stats for _all_ stocks when running for real, not just a small subset... (batch in calls of 100 symbols)
 
-    const firstTwoGainerSymbols = uniqueSymbols.splice(5, 15).join(',')
+    const firstTwoTrenderSymbols = uniqueSymbols.splice(5, 15).join(',')
 
     const url = process.env.IEX_BASES_URL + '/stock/market/batch?types=stats&symbols=' +
-        firstTwoGainerSymbols + '&token=' + process.env.IEX_KEY
+        firstTwoTrenderSymbols + '&token=' + process.env.IEX_KEY
 
     console.log('calling to ', url)
 

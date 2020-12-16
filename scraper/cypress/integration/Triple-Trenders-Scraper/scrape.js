@@ -2,7 +2,7 @@ import { When } from "cypress-cucumber-preprocessor/steps";
 
 export let data = {}
 
-When(`I scrape the {string} {string} for {string} on the {string}, new data: {string}`, async (stockCategory, gainerOrLoser, timeFrame, tableView, newData) => {
+When(`I scrape the {string} {string} for {string} on the {string}, new data: {string}`, async (stockCategory, trenderOrLoser, timeFrame, tableView, newData) => {
 
     if (newData === 'true') {
         data = {}
@@ -32,16 +32,16 @@ When(`I scrape the {string} {string} for {string} on the {string}, new data: {st
 
         cy.log('data2 ', data)
 
-        if (data[stockCategory][gainerOrLoser] === undefined) {
-            data[stockCategory][gainerOrLoser] = {}
+        if (data[stockCategory][trenderOrLoser] === undefined) {
+            data[stockCategory][trenderOrLoser] = {}
         }
 
         cy.log('data3 ', data)
 
-        cy.log('is timeframe undefined? ', data[stockCategory][gainerOrLoser][timeFrame] === undefined)
+        cy.log('is timeframe undefined? ', data[stockCategory][trenderOrLoser][timeFrame] === undefined)
 
-        if (data[stockCategory][gainerOrLoser][timeFrame] === undefined)
-            data[stockCategory][gainerOrLoser][timeFrame] = []
+        if (data[stockCategory][trenderOrLoser][timeFrame] === undefined)
+            data[stockCategory][trenderOrLoser][timeFrame] = []
 
         cy.log('data4 ', data)
 
@@ -56,15 +56,15 @@ When(`I scrape the {string} {string} for {string} on the {string}, new data: {st
                 newRow.push(cellValue)
             }
 
-            const existingRow = data[stockCategory][gainerOrLoser][timeFrame][i]
+            const existingRow = data[stockCategory][trenderOrLoser][timeFrame][i]
 
             if (existingRow === undefined) {
-                data[stockCategory][gainerOrLoser][timeFrame].push(newRow)
+                data[stockCategory][trenderOrLoser][timeFrame].push(newRow)
             }
             else {
                 // Combines main view and technical view if one already exists
-                data[stockCategory][gainerOrLoser][timeFrame][i] = [
-                    ...data[stockCategory][gainerOrLoser][timeFrame][i],
+                data[stockCategory][trenderOrLoser][timeFrame][i] = [
+                    ...data[stockCategory][trenderOrLoser][timeFrame][i],
                     ...newRow
                 ]
             }
