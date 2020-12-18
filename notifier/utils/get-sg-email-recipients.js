@@ -1,11 +1,11 @@
-const logger = require('../logger')
+const logger = require('./logger')
 
 const getSendgridTripleTrendersEmailRecipients = listId => {
 
   return new Promise(async resolve => {
 
     const client = require('@sendgrid/client');
-    
+
     client.setApiKey(process.env.SENDGRID_KEY);
 
     const request = {
@@ -17,15 +17,15 @@ const getSendgridTripleTrendersEmailRecipients = listId => {
       .then(data => {
 
         const emailAddressesForTtSubscribers = data[0].body.result
-        .filter(userObj => {
-          return userObj.list_ids.includes(listId)
-        })
-        .map(userObj => {
-          return userObj.email
-        })
-        
+          .filter(userObj => {
+            return userObj.list_ids.includes(listId)
+          })
+          .map(userObj => {
+            return userObj.email
+          })
+
         resolve(emailAddressesForTtSubscribers)
-        
+
       }, err => {
         logger.log('err getting contacts! ', err)
       })
@@ -34,4 +34,6 @@ const getSendgridTripleTrendersEmailRecipients = listId => {
 
 }
 
-module.exports = getSendgridTripleTrendersEmailRecipients
+module.exports = {
+  getSendgridTripleTrendersEmailRecipients
+}

@@ -21,7 +21,7 @@ calculateTrendIntervals = (day5ChangePercent, month1ChangePercent, month3ChangeP
     const marketDaysInTi3 = 16
 
     /**
-     *  "ti[n]" stands for "the daily avg percent change over the trend interval n." 
+     *  "ti[n]" stands for "the daily avg percent change over the trend interval n."
      */
 
     // x * (1 + day5ChangePercent) * (1 + ti3) = x * (1 + month1ChangePercent)

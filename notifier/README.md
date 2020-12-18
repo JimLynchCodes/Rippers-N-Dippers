@@ -41,3 +41,18 @@ Running the commands straight in the crontab file is not advised because you nee
 ```
 
 Note the double side carots `>>` which is needed to append the output to the logs file, and the `2>&1` tells it to write both the standard console logs and errors to the logs file.
+
+
+## dyna settings
+Set up your domain name. In my case I'm using dynadot as the host of the domain and email hosting (around $12/year and $15/year, respectively).
+
+## sg settings
+Using jim's evaluates2 account for tt.
+
+(Jim's mrdotjim email sg account for tg). 
+
+Uses these sg features:
+
+- unsubscribe group: the "unsubscribe" and "manage email preferences links are appended my sendrid and add /remove users to the sendgrid unsubscribe list, referred to by the "TT_SG_EMAIL_SUBSCRIBERS_LIST_ID" unsub id env variable.
+
+- Signup Forms - uses a sendgrid signup form to register new users, keeps track of users in sendgrid, env variable is: 

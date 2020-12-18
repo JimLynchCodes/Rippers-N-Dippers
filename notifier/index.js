@@ -1,16 +1,20 @@
 
 require('dotenv').config()
-const logger = require('./logger')
+const logger = require('./utils/logger')
 const moment = require('moment')
 const sg = require('@sendgrid/mail');
 // const mongoFunctions = require('./mongo-functions')
-const getSendgridTripleTrendersEmailRecipients = require('./get-sg-tg-email-recipients')
+const getSendgridTripleTrendersEmailRecipients = require('./utils/get-sg-email-recipients').getSendgridTripleTrendersEmailRecipients
 const sortByBcOpinion = require('./utils/sort-by-bc-opinion')
 const readStocksTtAnalysis = require('./utils/mongo-functions').readStocksTtAnalysis
 // const readStocksTtAnalysis = mongoFunctions.readStocksTtAnalysis
 // const _readSectorsTtAnalysis = mongoFunctions.readSectorsTtAnalysis // TODO - show sectors too
 
 const getEmailHeader = require('./utils/html-builder').getEmailHeader
+const getTrendingUpwardsSection = require('./utils/html-builder').getTrendingUpwardsSection
+const getTrendingDownwardsSection = require('./utils/html-builder').getTrendingDownwardsSection
+const getDefinitionsSection = require('./utils/html-builder').getDefinitionsSection
+const getFooterSection = require('./utils/html-builder').getFooterSection
 
 
 let colorNextRow = true
@@ -21,11 +25,14 @@ const main = async () => {
 
   // logger.info('Pulling the most recent analyzed us sector data for triple trenders...')
   // const analyzedSectors = await readSectorsTtAnalysis()
-  // logger.info(`Pulled analyzed SECTOR data from ${analyzedSectors['date_scraped']} ${analyzedSectors['time_scraped']}`)
+  // logger.info(`Pulled analyzed SECTOR data from ${analyzedSectors.date_analyzed} ${analyzedSectors.time_analyzed}`)
   // logger.info(analyzedSectors)
 
   const analyzedStocks = await readStocksTtAnalysis()
-  logger.info(`Pulled analyzed STOCK data from ${analyzedStocks['date_scraped']} ${analyzedStocks['time_scraped']}`)
+
+  console.log('analyzedStocks ', JSON.stringify(analyzedStocks, null, 2))
+
+  logger.info(`Pulled analyzed STOCK data from ${analyzedStocks.date_analyzed} ${analyzedStocks.time_analyzed}`)
 
   // const largeCapTrendersDataTextableString = analyzedStocks.tt_stats['large_cap_us']['trenders']
   //   /**
@@ -37,12 +44,6 @@ const main = async () => {
   //   })
   //   .join('')
 
-  const largeCapTrendersTableRows = buildTtRowFromMongoData(analyzedStocks, 'trending_upwards')
-
-  colorNextRow = true
-
-  const largeCapLosersTableRows = buildTtRowFromMongoData(analyzedStocks, 'trending_downwards')
-
   // const largeCapLosersDataTextableString = analyzedStocks.tt_stats['large_cap_us']['losers']
   //   .sort(sortByBcOpinion)
   //   .map(trenderObj => {
@@ -50,10 +51,10 @@ const main = async () => {
   //   })
   //   .join('')
 
-  const numberOfTrenders = analyzedStocks.tt_stats['large_cap_us']['trenders'].length
-  const numberOfLosers = analyzedStocks.tt_stats['large_cap_us']['losers'].length
+  const numberOfUpwardTrending = analyzedStocks.tt_stats.trending_upwards.length
+  const numberOfDownwardTrending = analyzedStocks.tt_stats.trending_downwards.length
 
-  logger.info(`Notifying of ${numberOfTrenders} trenders and ${numberOfLosers} losers.`)
+  logger.info(`Notifying of ${numberOfUpwardTrending} trenders and ${numberOfDownwardTrending} losers.`)
 
   // const highVolumeTipsSection = `<h2>Unusually High Volume ✨</h2>` +
   //   '<p><i>Stocks with the highest 1 day / 20 day volume ratio.</i></p>' +
@@ -272,13 +273,13 @@ const main = async () => {
 
   // const fullTextEmail = emailHeader + tipsSection + trendersTable + losersTable + emailFooter
   const fullTextEmail = getEmailHeader(analyzedStocks) +
-    getTrendingUpwardsSection(analyzedStocks.tt_stats.trending_upwards) +
-    getTrendingDownwardsSection(analyzedStocks.tt_stats.trending_downwards) +
+    getTrendingUpwardsSection(analyzedStocks.tt_stats.trending_upwards, 'trending_upwards') +
+    getTrendingDownwardsSection(analyzedStocks.tt_stats.trending_downwards, 'trending_downwards') +
     getDefinitionsSection() +
     getFooterSection()
 
   // const shortenedTextMobile = `Hey there! 🤖\n` +
-  //   `Triple Trenders stats for ${analyzedStocks['date_scraped']}:\n` +
+  //   `Triple Trenders stats for ${analyzedStocks.date_analyzed}:\n` +
   //   `Trenders: ${numberOfTrenders}\n` +
   //   `Losers: ${numberOfLosers}\n\n` +
   //   `May the gains be with you. 💪`
@@ -303,7 +304,7 @@ const main = async () => {
         from: process.env.SG_FROM_EMAIL,
         // text: fullTextEmail,
         html: fullTextEmail,
-        subject: `Triple Trenders Report! - ${analyzedStocks['date_scraped']}`,
+        subject: `Triple Trenders Report! 25 - ${analyzedStocks.date_analyzed}`,
         asm: {
           group_id: +process.env.SENDGRID_UNSUBSCRIBE_GROUP_ID
         }
