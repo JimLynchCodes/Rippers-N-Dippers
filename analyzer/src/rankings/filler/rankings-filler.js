@@ -52,7 +52,7 @@ const fillInRankings = (preRankingsTtStatsArray, upOrDown) => {
 
     });
 
-    console.log('mins and maxes', rankingsMaxMinsHolder)
+    console.log(`mins and maxes for ${upOrDown}`, rankingsMaxMinsHolder)
 
     return preRankingsTtStatsArray
         .filter(statsObj => statsObj.trend_rate !== 'N/T')
@@ -93,8 +93,6 @@ const fillInRankings = (preRankingsTtStatsArray, upOrDown) => {
             const volumeRanking = (volumeDistFromMin === volumeDistFromMax) ?
                 1 :
                 volumeDistFromMin / (volumeDistFromMin + volumeDistFromMax)
-
-            console.log('ranking... ', volumeRanking)
 
             statsObj.rankings = {
                 trend: +trendRanking.toFixed(2),

@@ -96,3 +96,24 @@
 {"message":"SEND_TO_ONLY_ADMIN is false - sending to real recipients... : mrdotjim@gmail.com","level":"info"}
 {"message":"Mail has been sent to help@katefromhr.com!","level":"info"}
 {"message":"Mail has been sent to jim@wisdomofjim.com!","level":"info"}
+{"message":"Pulled analyzed STOCK data from December 20th 2020 8:15:15 pm","level":"info"}
+{"message":"Notifying of 50 trenders and 48 losers.","level":"info"}
+{"message":"sendgrid recipients: [\"jim.lynch@evaluates2.com\",\"jim@wisdomofjim.com\"]","level":"info"}
+{"message":"SEND_TO_ONLY_ADMIN is false - sending to real recipients... : mrdotjim@gmail.com","level":"info"}
+{"message":"Mail has been sent to jim.lynch@evaluates2.com!","level":"info"}
+{"message":"Mail has been sent to jim@wisdomofjim.com!","level":"info"}
+{"message":"Pulled analyzed STOCK data from December 20th 2020 8:15:15 pm","level":"info"}
+{"message":"Notifying of 50 trenders and 48 losers.","level":"info"}
+{"message":"sendgrid recipients: [\"mrdotjim@gmail.com\"]","level":"info"}
+{"message":"SEND_TO_ONLY_ADMIN is false - sending to real recipients... : mrdotjim@gmail.com","level":"info"}
+{"message":"Mail has been sent to mrdotjim@gmail.com!","level":"info"}
+{"message":"Pulled analyzed STOCK data from December 20th 2020 10:11:39 pm","level":"info"}
+{"message":"Notifying of 568 trenders and 507 losers.","level":"info"}
+{"message":"sendgrid recipients: [\"mrdotjim@gmail.com\"]","level":"info"}
+{"message":"SEND_TO_ONLY_ADMIN is false - sending to real recipients... : mrdotjim@gmail.com","level":"info"}
+{"message":"Mail has been sent to mrdotjim@gmail.com!","level":"info"}
+{"message":"Pulled analyzed STOCK data from December 20th 2020 10:11:39 pm","level":"info"}
+{"message":"Notifying of 568 trenders and 507 losers.","level":"info"}
+{"message":"sendgrid recipients: [\"mrdotjim@gmail.com\"]","level":"info"}
+{"message":"SEND_TO_ONLY_ADMIN is false - sending to real recipients... : mrdotjim@gmail.com","level":"info"}
+{"message":"Mail has been sent to mrdotjim@gmail.com!","level":"info"}

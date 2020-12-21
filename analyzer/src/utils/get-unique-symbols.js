@@ -18,6 +18,8 @@ const getUniqueSymbols = scrapedData => {
 
                 const symbols = symbolsWithHeaders.slice(1) // removes the first element, the literal string: 'Symbol'
 
+                console.log('gainer or loser: ', gainerOrLoser)
+
                 uniqueSymbols[gainerOrLoser] = [...symbols, ...uniqueSymbols[gainerOrLoser]]
             })
 

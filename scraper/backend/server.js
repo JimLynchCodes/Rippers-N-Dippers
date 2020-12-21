@@ -68,7 +68,7 @@ app.post('/save', async (req, res) => {
             date_scraped: currentDate,
             categories: {
                 large_cap_us: {
-                    trenders: {
+                    gainers: {
                         'today': [],
                         '5d': [],
                         '1m': [],
@@ -80,7 +80,7 @@ app.post('/save', async (req, res) => {
                     },
                 },
                 mid_cap_us: {
-                    trenders: {
+                    gainers: {
                         'today': [],
                         '5d': [],
                         '1m': [],
@@ -92,7 +92,7 @@ app.post('/save', async (req, res) => {
                     },
                 },
                 small_cap_us: {
-                    trenders: {
+                    gainers: {
                         'today': [],
                         '5d': [],
                         '1m': [],
@@ -104,7 +104,7 @@ app.post('/save', async (req, res) => {
                     },
                 },
                 micro_cap_us: {
-                    trenders: {
+                    gainers: {
                         'today': [],
                         '5d': [],
                         '1m': [],

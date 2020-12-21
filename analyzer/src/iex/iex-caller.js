@@ -76,7 +76,7 @@ const getStatsForChunk = chunkOfSymbols => {
 
     return new Promise(async resolve => {
 
-        console.log('value is: ', (process.env.MAX_TOTAL_IEX_CALLS_TO_MAKE / 2))
+        console.log('max calls for this list: ', (process.env.MAX_TOTAL_IEX_CALLS_TO_MAKE / 2))
         console.log('original chunk: ', chunkOfSymbols)
 
         const chunkOfSymbolsString = chunkOfSymbols
@@ -89,14 +89,13 @@ const getStatsForChunk = chunkOfSymbols => {
             chunkOfSymbolsString + '&token=' + process.env.IEX_KEY
 
         console.log('url is: ', url)
-        const axiosResult = await axios.get(url)
+        const axiosResult = await axios.get(url).catch( err => JSON.stringify(err))
 
         const flatArrayOFSymbols = Object.entries(axiosResult.data).map( ([symbol, obj]) => {
             obj.stats.symbol = symbol
             return obj.stats
         })
 
-        console.log('axiosResult ', axiosResult.data)
         resolve(flatArrayOFSymbols)
     })
 }
@@ -105,7 +104,7 @@ const getKeyStatsList = uniqueSymbolChunks => {
 
     return new Promise(resolve => {
 
-        console.log('uniqueSymbols ', uniqueSymbolChunks)
+        // console.log('uniqueSymbols ', uniqueSymbolChunks)
 
         let results = []
 
@@ -115,7 +114,6 @@ const getKeyStatsList = uniqueSymbolChunks => {
 
             setTimeout(async () => {
 
-                console.log('results length...', results.length)
                 if (results.length <= (process.env.MAX_TOTAL_IEX_CALLS_TO_MAKE / 2)) {
 
                     console.log('calling...!')
@@ -123,13 +121,13 @@ const getKeyStatsList = uniqueSymbolChunks => {
                     const statsArray = await getStatsForChunk(chunkOfSymbols)
 
                     results = [...results, ...statsArray]
-                }
 
-                console.log('results: ', JSON.stringify(results) )
+                    console.log('results now: ', results.length)
+                }
 
                 if (i === uniqueSymbolChunks.length - 1) {
                     
-                    console.log('returning results... ', results.length)
+                    console.log(`returning ${results.length} results...`)
                     resolve(results)
                 }
 

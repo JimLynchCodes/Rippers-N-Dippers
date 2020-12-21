@@ -10,7 +10,7 @@ const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHT
     `This report is based on market close data from ${analyzedStocks.date_analyzed}.<br/><br/>All stocks in the NYSE, Nasdaq, and AMEX exchanges were considered.` +
     '</p>' +
     '<p style="font-size: 2rem;">' +
-    '<div style="font-size:5rem;width:100%;text-align:center;">🏆</div>' +
+    '<div style="width:100%;text-align:center;width:auto;min-height:50px;">🏆</div>' +
     '</p>' +
     '<hr/>' +
     '<br/>'

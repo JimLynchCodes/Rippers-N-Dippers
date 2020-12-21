@@ -10,12 +10,12 @@ Feature: Daily Barchart Sdvances / Declines Scraper
         # -- Large Cap --
 
         # Large Cap - Trenders - today
-        When I navigate to the "large-cap_trenders_today_main-view" page
-        And I scrape the "large_cap_us" "trenders" for "today" on the "main-view", new data: "true"
+        When I navigate to the "large-cap_gainers_today_main-view" page
+        And I scrape the "large_cap_us" "gainers" for "today" on the "main-view", new data: "true"
 
-        When I navigate to the "large-cap_trenders_today_technical-view" page
-        And I scrape the "large_cap_us" "trenders" for "today" on the "technical-view", new data: "false"
+        When I navigate to the "large-cap_gainers_today_technical-view" page
+        And I scrape the "large_cap_us" "gainers" for "today" on the "technical-view", new data: "false"
 
-        Then I update the database's bc scrape object for "large_cap_us" "trenders" "today"
+        Then I update the database's bc scrape object for "large_cap_us" "gainers" "today"
 
         And I'm done with the backend server.

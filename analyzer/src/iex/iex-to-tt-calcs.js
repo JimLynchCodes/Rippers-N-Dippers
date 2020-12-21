@@ -36,10 +36,10 @@ const iexStatsToTtStats = iexStats => {
                 statsObj.month3ChangePercent,
                 statsObj.month6ChangePercent
             ),
-            dip_percentage: +statsObj.day5ChangePercent.toFixed(2),
+            dip_percentage: statsObj.day5ChangePercent ? +statsObj.day5ChangePercent.toFixed(2) : undefined,
             volume_ratio: +((statsObj.avg10Volume / statsObj.avg30Volume).toFixed(2)),
             market_cap_group: getMarketCapGroup(statsObj.marketcap),
-            pe_ratio: +statsObj.peRatio.toFixed(2)
+            pe_ratio: statsObj.peRatio ? +(+(statsObj.peRatio).toFixed(2)) : undefined
         }
 
     })

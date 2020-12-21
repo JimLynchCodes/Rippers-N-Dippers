@@ -136,10 +136,17 @@ To deploy this scraper, clone the project on any linux, mac, or windows machine.
 
 ### Barchart username and password
 
-When running locally, set these path variables using "CYPRESS_" as the prefix so cypress can see them:
+When running locally, set these path variables using "CYPRESS_" as the prefix so cypress can see them.
+
+Note, use the $'' syntax to allow for special characters...
 ```
-export CYPRESS_barchart_user=jimbo@boofar.com
-export CYPRESS_barchart_pw=derpderp123
+export CYPRESS_BARCHART_USER=$'jimbo@boofar.com'
+export CYPRESS_BARCHART_PW=$'derpderp123'
+```
+
+Run this to check the values currently set in your shell:
+```
+printenv | grep CYPRESS
 ```
 
 When running on the build server, set the above two environment variables in the CI admin.
