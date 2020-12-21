@@ -55,4 +55,32 @@ Uses these sg features:
 
 - unsubscribe group: the "unsubscribe" and "manage email preferences links are appended my sendrid and add /remove users to the sendgrid unsubscribe list, referred to by the "TT_SG_EMAIL_SUBSCRIBERS_LIST_ID" unsub id env variable.
 
-- Signup Forms - uses a sendgrid signup form to register new users, keeps track of users in sendgrid, env variable is: 
+- Signup Forms - uses a sendgrid signup form to register new users, keeps track of users in sendgrid, env variables:
+
+- SENDGRID_KEY
+- TT_SG_EMAIL_SUBSCRIBERS_LIST_ID
+- SENDGRID_UNSUBSCRIBE_GROUP_ID
+- SG_FROM_EMAIL
+
+## mongo settings
+
+change these env variables to your own mongo connect, database, and collection:
+
+- MONGO_URI
+- DATABASE_NAME
+- STOCKS_TT_ANALYSIS_COLLECTION
+
+- SEND_TO_ONLY_ADMIN
+
+## "dev mode" config
+
+these env variables allow for manually running through all the various things witout _actually_ sending emails to all the subscribed users:
+
+- DISABLE_ALL_MESSAGE_SENDING
+- SEND_TO_ONLY_ADMIN
+
+## Sign Up Link
+
+If you or a friend would like to sign up to recieve Triple Trenders email notifactions, you can do so here:
+
+https://cdn.forms-content.sg-form.com/a05e73a6-3ffa-11eb-914e-2e15f5059f35

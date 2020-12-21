@@ -24,24 +24,22 @@ const getMarketCapGroup = (marketCapNum) => {
 
 const iexStatsToTtStats = iexStats => {
 
-    // console.log('iex stats ', iexStats);
+    return iexStats.map(statsObj => {
 
-    return Object.entries(iexStats).map(([symbol, statsObj]) => {
-
-        // console.log('stasObj: ', statsObj)
+        // console.log('statsObj: ', statsObj)
 
         return {
-            symbol,
+            symbol: statsObj.symbol,
             trend_rate: calculateTrendRate(
-                statsObj.stats.day5ChangePercent,
-                statsObj.stats.month1ChangePercent,
-                statsObj.stats.month3ChangePercent,
-                statsObj.stats.month6ChangePercent
+                statsObj.day5ChangePercent,
+                statsObj.month1ChangePercent,
+                statsObj.month3ChangePercent,
+                statsObj.month6ChangePercent
             ),
-            dip_percentage: +statsObj.stats.day5ChangePercent.toFixed(2),
-            volume_ratio: +((statsObj.stats.avg10Volume / statsObj.stats.avg30Volume).toFixed(2)),
-            market_cap_group: getMarketCapGroup(statsObj.stats.marketcap),
-            pe_ratio: +statsObj.stats.peRatio.toFixed(2)
+            dip_percentage: +statsObj.day5ChangePercent.toFixed(2),
+            volume_ratio: +((statsObj.avg10Volume / statsObj.avg30Volume).toFixed(2)),
+            market_cap_group: getMarketCapGroup(statsObj.marketcap),
+            pe_ratio: +statsObj.peRatio.toFixed(2)
         }
 
     })

@@ -9,8 +9,8 @@ const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHT
     '<p style="font-size: 1rem;">' +
     `This report is based on market close data from ${analyzedStocks.date_analyzed}.<br/><br/>All stocks in the NYSE, Nasdaq, and AMEX exchanges were considered.` +
     '</p>' +
-    '<p style="font-size: 1.5rem;">' +
-    '🏆' +
+    '<p style="font-size: 2rem;">' +
+    '<div style="font-size:5rem;width:100%;text-align:center;">🏆</div>' +
     '</p>' +
     '<hr/>' +
     '<br/>'
@@ -40,7 +40,7 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
             let tr
 
             if (colorNextRow) {
-                tr = upwardsOrDownwards === 'trending_upwards' ? 
+                tr = upwardsOrDownwards === 'trending_upwards' ?
                     `<tr bgcolor='#B9EDB9'>` :
                     `<tr bgcolor='#ff9994'>`
                 colorNextRow = false
@@ -114,13 +114,25 @@ const getTrendingDownwardsSection = (trendingDownwardsSymbols, upwardsOrDownward
 
 const getDefinitionsSection = trendingUpwardsSymbols => `<br/><br/><div style="text-align: left; max-width: 550px; margin: auto; padding: 0 1rem; border: .15rem solid black; border-radius: 0.5rem;">` +
     '<h2>Definitions</h2>' +
-    '<p style="font-size: 1rem;"><strong><u>Symbol</u></strong> - The ticker of a given stock or financial instrument.</p>' +
-    '<p style="font-size: 1rem;"><strong><u>Trend Rate</u></strong> - The rate at which the stock has been trending over the past 6 months.</p>' +
-    '<p style="font-size: 1rem;">(a higher positive number represents a stronger upward trend, and a lower negative number represents a stronger downwards trend)</p>' +
-    `<p style="font-size: 1rem;"><strong><u>Dip Percentage</u></strong> - The percentage a stock's price has changed over the past 5 days.</p>` +
+    '<p style="font-size: 1rem;"><strong><u>Symbol</u></strong> - The ticker that identifyies a given stock or financial instrument.</p>' +
+    '<p style="font-size: 1rem;"><strong><u>Trend Intervals</u></strong> - The time periods used to determine if a given stock is trending. Our algorithm looks at the percentage price change over the "dip interval" and "trend intervals" which correspond to the following time periods:' +
+    '<ul>' +
+    '<li style="font-size: 1rem;">Ti1: between 6 months ago and 3 months ago' +
+    '<li style="font-size: 1rem;">Ti2: between 3 months ago and 1 months ago' +
+    '<li style="font-size: 1rem;">Ti3: between 1 month ago and 5 trading days ago' +
+    '<li style="font-size: 1rem;">Di: the last 5 trading days' +
+    '</ul>' +
+    '</p>' +
+    // '<img src=""/>' +
+    '<p style="font-size: 1rem;">Note - The trending upwards and trending downwards tables contain ONLY stocks whose price has moved in the same direction over all three trend intervals.</p>' +
+    '<p style="font-size: 1rem;"><strong><u>Trend Rate</u></strong> - Represents the speed at which price change momentum is increasing.</p>' +
+    '<p style="font-size: 1rem;">(a positive number represents an upward trend, and a negative number represents a downwards trend)</p>' +
+    '<p style="font-size: 1rem;">(a trend rate value that is farther from zero indicates more price change momentum in the trend direction)</p>' +
+    `<p style="font-size: 1rem;"><strong><u>Dip Percentage</u></strong> - The percentage a stock's price has changed over the past 5 trading days.</p>` +
     `<p style="font-size: 1rem;"><strong><u>Rankings</u></strong> - The three bars respectively represent how a stock's trend rate, dip %, and volume ratio compare to other symbols also trending in that direction for the current day.</p>` +
     '<p style="font-size: 1rem;">(a large bar indicates a strong signal for the corresponding indicator)</p>' +
-    '<p style="font-size: 1rem;"><strong><u>Market Cap</u></strong> - A high-level group describing the size of of company based on the total value of all shares.</p>' +
+    '<p style="font-size: 1rem;"><strong><u>Market Cap</u></strong> - A high-level group describing the size of a company based on the total value of all shares.</p>' +
+    '<p style="font-size: 1rem;">(Micro < 300M < Small < 2B < Mid < 10B < Large < 200B < Mega)</p>' +
     '<p style="font-size: 1rem;"><strong><u>PE Ratio</u></strong> - Compares the price per share of a stock to the earnings per share.</p>' +
     `</div>`
 

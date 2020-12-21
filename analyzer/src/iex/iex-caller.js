@@ -72,25 +72,71 @@ const hardcoded_iex_data = {
     }
 }
 
-const getKeyStatsList = async uniqueSymbols => {
+const getStatsForChunk = chunkOfSymbols => {
 
-    console.log('uniqueSymbols ', uniqueSymbols)
+    return new Promise(async resolve => {
 
-    // TODO - get key stats for _all_ stocks when running for real, not just a small subset... (batch in calls of 100 symbols)
+        console.log('value is: ', (process.env.MAX_TOTAL_IEX_CALLS_TO_MAKE / 2))
+        console.log('original chunk: ', chunkOfSymbols)
 
-    const firstTwoTrenderSymbols = uniqueSymbols.splice(5, 15).join(',')
+        const chunkOfSymbolsString = chunkOfSymbols
+            .slice(0, (process.env.MAX_TOTAL_IEX_CALLS_TO_MAKE / 2))
+            .join(',')
 
-    const url = process.env.IEX_BASES_URL + '/stock/market/batch?types=stats&symbols=' +
-        firstTwoTrenderSymbols + '&token=' + process.env.IEX_KEY
+        console.log('chunkOfSymbolsString ', chunkOfSymbolsString)
 
-    console.log('calling to ', url)
+        const url = process.env.IEX_BASES_URL + '/stock/market/batch?types=stats&symbols=' +
+            chunkOfSymbolsString + '&token=' + process.env.IEX_KEY
 
-    const statsResponse = hardcoded_iex_data
+        console.log('url is: ', url)
+        const axiosResult = await axios.get(url)
 
-    // return statsResponse
+        const flatArrayOFSymbols = Object.entries(axiosResult.data).map( ([symbol, obj]) => {
+            obj.stats.symbol = symbol
+            return obj.stats
+        })
 
-    return axios.get(url).then( response => response.data )
-    
+        console.log('axiosResult ', axiosResult.data)
+        resolve(flatArrayOFSymbols)
+    })
+}
+
+const getKeyStatsList = uniqueSymbolChunks => {
+
+    return new Promise(resolve => {
+
+        console.log('uniqueSymbols ', uniqueSymbolChunks)
+
+        let results = []
+
+        uniqueSymbolChunks.forEach(async (chunkOfSymbols, i) => {
+
+            console.log(`chunk ${i} has ${chunkOfSymbols.length} symbols.`)
+
+            setTimeout(async () => {
+
+                console.log('results length...', results.length)
+                if (results.length <= (process.env.MAX_TOTAL_IEX_CALLS_TO_MAKE / 2)) {
+
+                    console.log('calling...!')
+
+                    const statsArray = await getStatsForChunk(chunkOfSymbols)
+
+                    results = [...results, ...statsArray]
+                }
+
+                console.log('results: ', JSON.stringify(results) )
+
+                if (i === uniqueSymbolChunks.length - 1) {
+                    
+                    console.log('returning results... ', results.length)
+                    resolve(results)
+                }
+
+            }, i * 600)
+
+        })
+    })
 }
 
 module.exports = {

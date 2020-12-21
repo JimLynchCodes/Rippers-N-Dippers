@@ -17,6 +17,13 @@ const getSendgridTripleTrendersEmailRecipients = listId => {
       .then(data => {
 
         const emailAddressesForTtSubscribers = data[0].body.result
+
+        /**
+         *  Uncomment below line to find the correct value for TT_SG_EMAIL_SUBSCRIBERS_LIST_ID
+         *  */
+        // logger.info('right from sg: ' + emailAddressesForTtSubscribers)
+
+        const emailAddressesForTtSubscribersFiltered = emailAddressesForTtSubscribers
           .filter(userObj => {
             return userObj.list_ids.includes(listId)
           })
@@ -24,14 +31,12 @@ const getSendgridTripleTrendersEmailRecipients = listId => {
             return userObj.email
           })
 
-        resolve(emailAddressesForTtSubscribers)
+        resolve(emailAddressesForTtSubscribersFiltered)
 
       }, err => {
         logger.log('err getting contacts! ', err)
       })
-
   })
-
 }
 
 module.exports = {

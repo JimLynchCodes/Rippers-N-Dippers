@@ -8,6 +8,8 @@ const readLatest = mongoFunctions.readLatest
 
 const fillInRankings = require('./rankings/filler/rankings-filler').fillInRankings
 const sortByRankings = require('./rankings/sorter/rankings-sorter').sortByRankings
+const getUniqueSymbols = require('./utils/get-unique-symbols').getUniqueSymbols
+const splitIntoChunks = require('./utils/array-chunker').splitIntoChunks
 
 const logger = require('./utils/logger')
 
@@ -15,7 +17,7 @@ const logger = require('./utils/logger')
  *  Analyzes scraped US sector data (triple trender's algo) for the current day.
  */
 
-const main2 = async () => {
+const main = async () => {
 
     return new Promise(async resolve => {
 
@@ -28,25 +30,30 @@ const main2 = async () => {
 
         const uniqueSymbols = getUniqueSymbols(scrapedData)
 
+        const chunkedUniqueGainersAndLosers = {
+            gainers: splitIntoChunks(uniqueSymbols.gainers, process.env.MAX_SYMBOLS_PER_LIST),
+            losers: splitIntoChunks(uniqueSymbols.losers, process.env.MAX_SYMBOLS_PER_LIST)
+        }
+
         const keyStats = {
-            trenders: await iexCaller.getKeyStatsList(uniqueSymbols.trenders),
-            losers: await iexCaller.getKeyStatsList(uniqueSymbols.losers),
+            gainers: await iexCaller.getKeyStatsList(chunkedUniqueGainersAndLosers.gainers),
+            losers: await iexCaller.getKeyStatsList(chunkedUniqueGainersAndLosers.losers),
         }
 
         // console.log('key stats are: ', JSON.stringify(keyStats))
-        
+
         const ttStatsWithoutRankings = {
-            trending_upwards: iexStatsToTtStats(keyStats.trenders),
+            trending_upwards: iexStatsToTtStats(keyStats.gainers),
             trending_downwards: iexStatsToTtStats(keyStats.losers)
         }
-        
+
         // console.log('ttStatsWithoutRankings are: ', ttStatsWithoutRankings)
-        
+
         const ttStatsUnsorted = {
-            trending_upwards: fillInRankings(ttStatsWithoutRankings.trending_upwards, 'upwards'),
+            trending_upwards: fillInRankings(ttStatsWithoutRankings.trending_upwards, 'upwards'),
             trending_downwards: fillInRankings(ttStatsWithoutRankings.trending_downwards, 'downwards')
         }
-        
+
         const tt_stats = {
             trending_upwards: sortByRankings(ttStatsUnsorted.trending_upwards, 'upwards'),
             trending_downwards: sortByRankings(ttStatsUnsorted.trending_downwards, 'downwards')
@@ -64,36 +71,7 @@ const main2 = async () => {
     })
 }
 
-const getUniqueSymbols = (scrapedData) => {
-
-    let uniqueSymbols = {
-        trenders: [],
-        losers: []
-    }
-
-    Object.entries(scrapedData['categories']).forEach(([marketCap, trendersAndLosers]) => {
-
-        Object.entries(trendersAndLosers).forEach(([trenderOrLoser, timePeriodData]) => {
-
-            Object.entries(timePeriodData).forEach(([timePeriod, stocksData]) => {
-
-                const symbolsWithHeaders = stocksData.map(stockDatum => stockDatum[0].trim())
-
-                const symbols = symbolsWithHeaders.slice(1)
-
-                uniqueSymbols[trenderOrLoser] = [...symbols, ...uniqueSymbols[trenderOrLoser]]
-            })
-
-            uniqueSymbols[trenderOrLoser] = Array.from(new Set(uniqueSymbols[trenderOrLoser]))
-
-        })
-    })
-
-    return uniqueSymbols
-}
-
-
-main2()
+main()
     .then(() => {
         process.exit()
     })
