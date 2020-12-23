@@ -9,8 +9,8 @@ const sortByRankings = (unsortedTtStatsArray) => {
 
     return unsortedTtStatsArray.sort((ttStatsObjA, ttStatsObjB) => {
 
-        return (ttStatsObjA.rankings.trend + ttStatsObjA.rankings.dip + ttStatsObjA.rankings.volume) <
-            (ttStatsObjB.rankings.trend + ttStatsObjB.rankings.dip + ttStatsObjB.rankings.volume) ?
+        return (ttStatsObjA.trend + ttStatsObjA.dip + ttStatsObjA.volume) <
+            (ttStatsObjB.trend + ttStatsObjB.dip + ttStatsObjB.volume) ?
             1 : -1
     })
 }

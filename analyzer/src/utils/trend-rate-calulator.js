@@ -51,7 +51,15 @@ calculateTrendIntervals = (day5ChangePercent, month1ChangePercent, month3ChangeP
 
 const calculateTrendRate = (day5ChangePercent, month1ChangePercent, month3ChangePercent, month6ChangePercent) => {
 
+    console.log(`calculating trend rate from: ${day5ChangePercent} ${month1ChangePercent} ${month6ChangePercent} `)
+
     const [ti1, ti2, ti3] = calculateTrendIntervals(day5ChangePercent, month1ChangePercent, month3ChangePercent, month6ChangePercent)
+
+    const dailyChangePercentages = {
+        '3m-6m': ti1,
+        '1m-3m': ti2,
+        '5d-1m': ti3,
+    }
 
     if ((ti1 < 0 && ti2 < 0 && ti3 < 0) ||
         (ti1 > 0 && ti2 > 0 && ti3 > 0)) {
@@ -66,10 +74,11 @@ const calculateTrendRate = (day5ChangePercent, month1ChangePercent, month3Change
 
         const niceSlope = +slope.toFixed(2)
 
-        return niceSlope
+
+        return [niceSlope, dailyChangePercentages]
     }
 
-    return 'N/T'
+    return ['N/T', dailyChangePercentages]
 }
 
 module.exports = {

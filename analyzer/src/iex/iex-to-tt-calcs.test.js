@@ -13,17 +13,25 @@ const smallPriceChangesTtResult = require('./test-cases/up-trender-small-nums').
 const downTrenderIexInput = require('./test-cases/down-trender').downTrenderIexInput
 const downTrenderTtResult = require('./test-cases/down-trender').downTrenderTtResult
 
+const multiTrenderIexInput = require('./test-cases/multi-trender').multiTrenderIexInput
+const multiTrenderTtResult = require('./test-cases/multi-trender').multiTrenderTtResult
+
 
 describe('converting iex stats to tt stats', () => {
 
     it.each([
-        ['small numbs up-trender', smallPriceChangesIexInput, smallPriceChangesTtResult],
-        ['non-trender', nonTrenderTtIexInput, nonTrenderTtResult],
-        ['up-trender negative slope', upTrendNegativeSlopeIexInput, upTrendNegativeSlopeTtResult],
-        ['down-trender', downTrenderIexInput, downTrenderTtResult],
+        ['small nums up-trender', smallPriceChangesIexInput, smallPriceChangesTtResult],
+        // ['non-trender`', nonTrenderTtIexInput, nonTrenderTtResult],
+        // ['up-trender negative slope', upTrendNegativeSlopeIexInput, upTrendNegativeSlopeTtResult],
+        // ['down-trende`r', downTrenderIexInput, downTrenderTtResult],
+        ['multi-trender', multiTrenderIexInput, multiTrenderTtResult],
     ])('%s', (_message, input, expectedResult) => {
 
-        expect(iexStatsToTtStats(input)).toEqual(expectedResult)
+        const actual = iexStatsToTtStats(input)
+
+        console.log('got actual: ', actual)
+
+        expect(actual).toEqual(expectedResult)
 
     })
 

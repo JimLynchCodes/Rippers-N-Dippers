@@ -10,6 +10,7 @@ const fillInRankings = require('./rankings/filler/rankings-filler').fillInRankin
 const sortByRankings = require('./rankings/sorter/rankings-sorter').sortByRankings
 const getUniqueSymbols = require('./utils/get-unique-symbols').getUniqueSymbols
 const splitIntoChunks = require('./utils/array-chunker').splitIntoChunks
+const markOutliers = require('./utils/outlier-marker/outlier-marker').markOutliers
 
 const logger = require('./utils/logger')
 
@@ -40,18 +41,31 @@ const main = async () => {
             losers: await iexCaller.getKeyStatsList(chunkedUniqueGainersAndLosers.losers),
         }
 
-        // console.log('key stats are: ', JSON.stringify(keyStats))
+        const [gainerTtStats, gainer_intermediate_trend_stats] = iexStatsToTtStats(keyStats.gainers)
+        const [loserTtStats, loser_intermediate_trend_stats] = iexStatsToTtStats(keyStats.losers)
+            
+        // filters out non-trenders
+        const trendingGainersTtStats = gainerTtStats.filter(statsObj => !isNaN(+statsObj.trend_rate))      
+        const trendingLosersTtStats = loserTtStats.filter(statsObj => !isNaN(+statsObj.trend_rate))          
+
+        console.log('gainer tt stats: ', trendingGainersTtStats)
+
+        const [gainersTtStatsArrCheckedForOutliers, gainersOutliersObj] = markOutliers(trendingGainersTtStats)
+        const [losersTtStatsArrCheckedForOutliers, losersOutliersObj] = markOutliers(trendingLosersTtStats)
 
         const ttStatsWithoutRankings = {
-            trending_upwards: iexStatsToTtStats(keyStats.gainers),
-            trending_downwards: iexStatsToTtStats(keyStats.losers)
+            trending_upwards: gainersTtStatsArrCheckedForOutliers,
+            trending_downwards: losersTtStatsArrCheckedForOutliers
         }
 
         // console.log('ttStatsWithoutRankings are: ', ttStatsWithoutRankings)
 
+        const [upwardsStatsObj, upwardsMaxesAndMins] = fillInRankings(ttStatsWithoutRankings.trending_upwards, 'upwards')
+        const [downwardsStatsObj, downwardsMaxesAndMins] = fillInRankings(ttStatsWithoutRankings.trending_downwards, 'downwards')
+
         const ttStatsUnsorted = {
-            trending_upwards: fillInRankings(ttStatsWithoutRankings.trending_upwards, 'upwards'),
-            trending_downwards: fillInRankings(ttStatsWithoutRankings.trending_downwards, 'downwards')
+            trending_upwards: upwardsStatsObj,
+            trending_downwards: downwardsStatsObj
         }
 
         const tt_stats = {
@@ -64,7 +78,19 @@ const main = async () => {
         await insert({
             'date_analyzed': currentDay,
             'time_analyzed': currentTime,
-            tt_stats
+            tt_stats,
+            intermediate_calculations: {
+                upwards: gainer_intermediate_trend_stats,
+                downwards: loser_intermediate_trend_stats
+            },
+            maxes_and_mins: {
+                trending_upwards: upwardsMaxesAndMins,
+                trending_downwards: downwardsMaxesAndMins
+            },
+            outliers: {
+                upwards: gainersOutliersObj,
+                downwards: losersOutliersObj
+            }
         })
 
         resolve('Successfully analyzed symbols!')

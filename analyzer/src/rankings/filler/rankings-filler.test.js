@@ -16,28 +16,46 @@ const threeThingsDownwardsTtStatsUnrankedInput = require('./test-cases/three-thi
 const threeThingsUpwardsTtStatsRankedOut = require('./test-cases/three-things').threeThingsUpwardsTtStatsRankedOut
 const threeThingsDownwardsTtStatsRankedOut = require('./test-cases/three-things').threeThingsDownwardsTtStatsRankedOut
 
+const fiveThingsUpwardsTtStatsUnrankedInput = require('./test-cases/five-things').fiveThingsUpwardsTtStatsUnrankedInput
+const fiveThingsUpwardsTtStatsRankedOut = require('./test-cases/five-things').fiveThingsUpwardsTtStatsRankedOut
+
+const overTheBoundariesMaxesAndMinsUnrankedInput = require('./test-cases/more-than-maxes-things').overTheBoundariesMaxesAndMinsUnrankedInput
+const overTheBoundariesMaxesAndMinsTtStatsRankedOut = require('./test-cases/more-than-maxes-things').overTheBoundariesMaxesAndMinsTtStatsRankedOut
+// const fiveThingsUpwardsTtStatsRankedOut = require('./test-cases/five-things').fiveThingsUpwardsTtStatsRankedOut
+
 const nonTrendersTtStatsUnrankedInput = require('./test-cases/non-trender').nonTrendersTtStatsUnrankedInput
 
 describe('filling in rankings', () => {
 
     it.each([
-        
-        ['single thing upwards', 'upwards', singleThingUpwardsTtStatsUnrankedInput, singleThingUpwardsTtStatsRankedOut],
-        ['single thing downwards', 'downwards', singleThingDownwardsTtStatsUnrankedInput, singleThingDownwardsTtStatsRankedOut],
-        
-        ['two things upwards', 'upwards', twoThingsUpwardsTtStatsUnrankedInput, twoThingsUpwardsTtStatsRankedOut],
-        ['two things downwards', 'downwards', twoThingsDownwardsTtStatsUnrankedInput, twoThingsDownwardsTtStatsRankedOut],
-        
-        ['three things upwards', 'upwards', threeThingsUpwardsTtStatsUnrankedInput, threeThingsUpwardsTtStatsRankedOut],
-        ['three things downwards', 'downwards', threeThingsDownwardsTtStatsUnrankedInput, threeThingsDownwardsTtStatsRankedOut],
 
-        ['filters out non-trenders up', 'upwards', nonTrendersTtStatsUnrankedInput, [] ],
-        ['filters out non-trenders down', 'downwards', nonTrendersTtStatsUnrankedInput, [] ],
+        // ['single thing upwards', 'upwards', singleThingUpwardsTtStatsUnrankedInput, singleThingUpwardsTtStatsRankedOut],
+        // ['single thing downwards', 'downwards', singleThingDownwardsTtStatsUnrankedInput, singleThingDownwardsTtStatsRankedOut],
+
+        // ['two things upwards', 'upwards', twoThingsUpwardsTtStatsUnrankedInput, twoThingsUpwardsTtStatsRankedOut],
+        // ['two things downwards', 'downwards', twoThingsDownwardsTtStatsUnrankedInput, twoThingsDownwardsTtStatsRankedOut],
+
+        // ['three things upwards', 'upwards', threeThingsUpwardsTtStatsUnrankedInput, threeThingsUpwardsTtStatsRankedOut],
+        // ['three things downwards', 'downwards', threeThingsDownwardsTtStatsUnrankedInput, threeThingsDownwardsTtStatsRankedOut],
         
+        // ['five things upwards', 'downwards', fiveThingsUpwardsTtStatsUnrankedInput, fiveThingsUpwardsTtStatsRankedOut],
+        
+        ['over the boundaries', 'downwards', overTheBoundariesMaxesAndMinsUnrankedInput, overTheBoundariesMaxesAndMinsTtStatsRankedOut],
+        
+        // ['filters out non-trenders up', 'upwards', nonTrendersTtStatsUnrankedInput, [] ],
+        // ['filters out non-trenders down', 'downwards', nonTrendersTtStatsUnrankedInput, [] ],
+
     ])('%s', (_message, upOrdown, input, expectedResult) => {
 
         expect(fillInRankings(input, upOrdown)).toEqual(expectedResult)
+        
+    })
+    
+    it('throws error when passed bad upwards or downwards string', async () => {
+
+        expect(() => {
+            fillInRankings(singleThingUpwardsTtStatsUnrankedInput, 'foo')
+        }).toThrow('"upOrDown" must be either upwards or downwards!');
 
     })
-
 })

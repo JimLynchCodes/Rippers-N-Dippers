@@ -1,5 +1,5 @@
 
-const threeThingsUpwardsTtStatsUnrankedInput = [
+const fiveThingsUpwardsTtStatsUnrankedInput = [
     {
         symbol: 'AFI',
         trend_rate: 5,
@@ -26,7 +26,7 @@ const threeThingsUpwardsTtStatsUnrankedInput = [
     }
 ]
 
-const threeThingsUpwardsTtStatsRankedOut = [
+const fiveThingsUpwardsTtStatsRankedOut = [
     [
         {
             symbol: 'AFI',
@@ -72,7 +72,7 @@ const threeThingsUpwardsTtStatsRankedOut = [
     }
 ]
 
-const threeThingsDownwardsTtStatsUnrankedInput = [
+const fiveThingsDownwardsTtStatsUnrankedInput = [
     {
         symbol: 'AFI',
         trend_rate: -5.23,
@@ -99,7 +99,7 @@ const threeThingsDownwardsTtStatsUnrankedInput = [
     }
 ]
 
-const threeThingsDownwardsTtStatsRankedOut = [
+const fiveThingsDownwardsTtStatsRankedOut = [
     [
         {
             "symbol": "AFI",
@@ -158,8 +158,8 @@ const threeThingsDownwardsTtStatsRankedOut = [
 ]
 
 module.exports = {
-    threeThingsUpwardsTtStatsUnrankedInput,
-    threeThingsDownwardsTtStatsUnrankedInput,
-    threeThingsDownwardsTtStatsRankedOut,
-    threeThingsUpwardsTtStatsRankedOut
+    fiveThingsUpwardsTtStatsUnrankedInput,
+    fiveThingsDownwardsTtStatsUnrankedInput,
+    fiveThingsDownwardsTtStatsRankedOut,
+    fiveThingsUpwardsTtStatsRankedOut
 }

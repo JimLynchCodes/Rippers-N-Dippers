@@ -1,42 +1,62 @@
 
-const smallPriceChangesIexInput = {
-    AFI: {
-        stats: {
-            companyName: 'Armstrong Flooring Inc',
-            marketcap: 72447844,
-            week52high: 5.26,
-            week52low: 1.3,
-            week52change: -0.20238095238095244,
-            sharesOutstanding: 21626222,
-            float: 0,
-            avg10Volume: 4,
-            avg30Volume: 2,
-            day200MovingAvg: 3.48,
-            day50MovingAvg: 3.29,
-            employees: 0,
-            ttmEPS: -2.57,
-            ttmDividendRate: 0,
-            dividendYield: 0,
-            nextDividendDate: '',
-            exDividendDate: '',
-            nextEarningsDate: '',
-            peRatio: -1.2868178277087035,
-            beta: 0.8576035280475932,
-            maxChangePercent: -0.7208333333333333,
-            year5ChangePercent: -0.7208333333333333,
-            year2ChangePercent: -0.7602004294917681,
-            year1ChangePercent: -0.20803782505910173,
-            ytdChangePercent: 0.05,
-            month6ChangePercent: 0.04,
-            month3ChangePercent: 0.03,
-            month1ChangePercent: 0.02,
-            day30ChangePercent: 0.02,
-            day5ChangePercent: 0.01
-        }
-    }
-}
+const smallPriceChangesIexInput = [{
+    companyName: 'Armstrong Flooring Inc',
+    marketcap: 72447844,
+    week52high: 5.26,
+    week52low: 1.3,
+    week52change: -0.20238095238095244,
+    sharesOutstanding: 21626222,
+    float: 0,
+    avg10Volume: 4,
+    avg30Volume: 2,
+    day200MovingAvg: 3.48,
+    day50MovingAvg: 3.29,
+    employees: 0,
+    ttmEPS: -2.57,
+    ttmDividendRate: 0,
+    dividendYield: 0,
+    nextDividendDate: '',
+    exDividendDate: '',
+    nextEarningsDate: '',
+    peRatio: -1.2868178277087035,
+    beta: 0.8576035280475932,
+    maxChangePercent: -0.7208333333333333,
+    year5ChangePercent: -0.7208333333333333,
+    year2ChangePercent: -0.7602004294917681,
+    year1ChangePercent: -0.20803782505910173,
+    ytdChangePercent: 0.05,
+    month6ChangePercent: 0.04,
+    month3ChangePercent: 0.03,
+    month1ChangePercent: 0.02,
+    day30ChangePercent: 0.02,
+    day5ChangePercent: 0.01,
+    symbol: 'AFI'
+}]
 
-const smallPriceChangesTtResult = [{ "dip_percentage": 0.01, "market_cap_group": "Micro", "pe_ratio": -1.29, "symbol": "AFI", "volume_ratio": 2, "trend_rate": 0.23 }]
+const expectedTtStats = [{ "dip_percentage": 0.01, "market_cap_group": "Micro", "pe_ratio": -1.29, "symbol": "AFI", "volume_ratio": 2, "trend_rate": 0.23 }]
+
+const expectedIntermediateStats = [{
+    symbol: 'AFI',
+    cumulative_percentage_changes: {
+        "1m": 0.02,
+        "3m": 0.03,
+        "5d": 0.01,
+    },
+    "interval_daily_percentage_changes": {
+        "1m-3m": 0.00046685340802987696,
+        "3m-6m": 0.000154106950223455,
+        "5d-1m": 0.0006188118811881194,
+    },
+    "volume_metrics": {
+        "10d": 4,
+        "30d": 2,
+    }
+}]
+
+const smallPriceChangesTtResult = [
+    expectedTtStats, 
+    expectedIntermediateStats
+]
 
 module.exports = {
     smallPriceChangesIexInput,
