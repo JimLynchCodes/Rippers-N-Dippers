@@ -1,4 +1,11 @@
 
+const GREEN_ROW_COLOR = '#B9EDB9'
+const RED_ROW_COLOR = '#f7b2b2'
+
+const TREND_BAR_COLOR = '#003A64'
+const DIP_BAR_COLOR = '#54A2D2'
+const VOLUME_BAR_COLOR = '#A9CEE8'
+
 const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">` +
     '<div style="background:rgb(255,255,255);max-width:700px;width:100%;margin:0px auto; text-align: center;">' +
     '<br/>' +
@@ -18,13 +25,16 @@ const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHT
 const tableHeaders = () => {
 
     return '<tr>' +
-        '<th><h4>Symbol</h4></th>' +
-        '<th><h4>Trend<br/>Rate</h4></th>' +
-        '<th><h4>Dip<br/>Percentage</h4></th>' +
-        '<th><h4>Volume<br/>Ratio</h4></th>' +
-        '<th><h4>Rankings</h4></th>' +
-        '<th><h4>Market<br/>Cap</h4></th>' +
-        '<th><h4>PE Ratio</h4></th>' +
+        '<th><h4 style="margin: 5px 2px;">Symbol</h4></th>' +
+        '<th><h4 style="margin: 5px 2px;">Trend<br/>Rate</h4>' +
+        `<div style="width: 20px; height: 20px; background-color: ${TREND_BAR_COLOR}; border-radius: 5px;  margin: auto auto 5px auto; border: black solid 0.5px;"></div></th>` +
+        '<th><h4 style="margin: 5px 2px;">Dip<br/>Percentage</h4>' +
+        `<div style="width: 20px; height: 20px; background-color: ${DIP_BAR_COLOR}; border-radius: 5px; margin: auto auto 5px auto; border: black solid 0.5px;"></div></th>` +
+        '<th><h4 style="margin: 5px 2px;">Volume<br/>Ratio</h4>' +
+        `<div style="width: 20px; height: 20px; background-color: ${VOLUME_BAR_COLOR}; border-radius: 5px; margin: auto auto 5px auto; border: black solid 0.5px;"></div></th>` +
+        '<th><h4 style="margin: 5px 2px;">Rankings</h4></th>' +
+        '<th><h4 style="margin: 5px 2px;">Market<br/>Cap</h4></th>' +
+        '<th><h4 style="margin: 5px 2px;">PE Ratio</h4></th>' +
         '</tr>'
 }
 
@@ -41,8 +51,8 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
 
             if (colorNextRow) {
                 tr = upwardsOrDownwards === 'trending_upwards' ?
-                    `<tr bgcolor='#B9EDB9'>` :
-                    `<tr bgcolor='#f7b2b2'>`
+                    `<tr bgcolor='${GREEN_ROW_COLOR}'>` :
+                    `<tr bgcolor='${RED_ROW_COLOR}'>`
                 colorNextRow = false
             } else {
                 tr = `<tr>`
@@ -68,9 +78,9 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
                 '</td>' +
                 '<td style="min-width: 85px; min-height: 50px; padding: 0.5rem; display: flex;">' +
 
-                `<div style="background-color: #e56805; min-width: 15px; min-height: ${trendBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
-                `<div style="background-color: #fda439; min-width: 15px; min-height: ${dipBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
-                `<div style="background-color: #FCCF3E; min-width: 15px; min-height: ${volumeBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div style="background-color: ${TREND_BAR_COLOR}; min-width: 15px; min-height: ${trendBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div style="background-color: ${DIP_BAR_COLOR}; min-width: 15px; min-height: ${dipBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div style="background-color: ${VOLUME_BAR_COLOR}; min-width: 15px; min-height: ${volumeBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
 
                 '</td>' +
                 '<td style="min-width:75px">' +
@@ -114,11 +124,11 @@ const getTrendingDownwardsSection = (trendingDownwardsSymbols, upwardsOrDownward
 
 const getDefinitionsSection = trendingUpwardsSymbols => `<br/><br/><div style="text-align: left; max-width: 550px; margin: auto; padding: 0 1rem; border: .15rem solid black; border-radius: 0.5rem;">` +
     '<h2>Definitions</h2>' +
-    '<p style="font-size: 1rem;"><strong><u>Symbol</u></strong> - The ticker that identifyies a given stock or financial instrument.</p>' +
+    '<p style="font-size: 1rem;"><strong><u>Symbol</u></strong> - The ticker that identifies a given stock or financial instrument.</p>' +
     '<p style="font-size: 1rem;"><strong><u>Trend Intervals</u></strong> - The time periods used to determine if a given stock is trending. Our algorithm looks at the percentage price change over the "dip interval" and "trend intervals" which correspond to the following time periods:' +
     '<ul>' +
     '<li style="font-size: 1rem;">Ti1: between 6 months ago and 3 months ago' +
-    '<li style="font-size: 1rem;">Ti2: between 3 months ago and 1 months ago' +
+    '<li style="font-size: 1rem;">Ti2: between 3 months ago and 1 month ago' +
     '<li style="font-size: 1rem;">Ti3: between 1 month ago and 5 trading days ago' +
     '<li style="font-size: 1rem;">Di: the last 5 trading days' +
     '</ul>' +
@@ -142,8 +152,18 @@ const getFooterSection = trendingUpwardsSymbols => '<br/><br/>' +
     `<p style="font-size: 1rem;">Good luck and enjoy the ride!</p><br/>` +
     '<p style="font-size: 1rem;">Have friends who want to receive the daily Triple Trenders report? <a href="https://cdn.forms-content.sg-form.com/f034a73f-a80f-11ea-8e17-928c85d443c0">Sign up here</a>!</p>' +
     '<br/>' +
-    `<p style="font-size: 1rem;">We want to hear from YOU! If you enjoy getting this email or have any questions at all, just reply to this email and say hello!</p>` +
+    `<p style="font-size: 1rem;">We want to hear from YOU! If you enjoy getting these stock picks or have any questions at all, just reply to this email and say hello!</p>` +
     '<div>' +
+    '<br/>' +
+    '<div style="width: 500px; display: flex; margin: auto;">' +
+    '<div style="margin: auto; text-align: left;">' +
+    '<h2>Sincerely,</h2>' +
+    '<h2>Your Friend & Fellow Trader,</h2>' +
+    '<h1>&nbsp;&nbsp;&nbsp;&nbsp;Jim Lynch</h1>' +
+    '</div>' +
+    '<img style="margin: auto;" src="https://raw.githubusercontent.com/JimLynchCodes/Triple-Trenders/main/notifier/images/jim-headshot-hand-drawn.jpeg" />' +
+    '</div>' +
+    '<br/>' +
     '<br/>' +
     '<p style="font-size: 1rem;">Disclaimer: any information here may be incorrect. Invest at your own risk!</p>' +
     '</div>' +
