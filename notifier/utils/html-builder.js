@@ -42,7 +42,7 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
             if (colorNextRow) {
                 tr = upwardsOrDownwards === 'trending_upwards' ?
                     `<tr bgcolor='#B9EDB9'>` :
-                    `<tr bgcolor='#ff9994'>`
+                    `<tr bgcolor='#f7b2b2'>`
                 colorNextRow = false
             } else {
                 tr = `<tr>`
@@ -68,9 +68,9 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
                 '</td>' +
                 '<td style="min-width: 85px; min-height: 50px; padding: 0.5rem; display: flex;">' +
 
-                `<div style="background-color: red; min-width: 15px; min-height: ${trendBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
-                `<div style="background-color: blue; min-width: 15px; min-height: ${dipBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
-                `<div style="background-color: yellow; min-width: 15px; min-height: ${volumeBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div style="background-color: #e56805; min-width: 15px; min-height: ${trendBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div style="background-color: #fda439; min-width: 15px; min-height: ${dipBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div style="background-color: #FCCF3E; min-width: 15px; min-height: ${volumeBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
 
                 '</td>' +
                 '<td style="min-width:75px">' +
@@ -129,11 +129,13 @@ const getDefinitionsSection = trendingUpwardsSymbols => `<br/><br/><div style="t
     '<p style="font-size: 1rem;">(a positive number represents an upward trend, and a negative number represents a downwards trend)</p>' +
     '<p style="font-size: 1rem;">(a trend rate value that is farther from zero indicates more price change momentum in the trend direction)</p>' +
     `<p style="font-size: 1rem;"><strong><u>Dip Percentage</u></strong> - The percentage a stock's price has changed over the past 5 trading days.</p>` +
-    `<p style="font-size: 1rem;"><strong><u>Rankings</u></strong> - The three bars respectively represent how a stock's trend rate, dip %, and volume ratio compare to other symbols also trending in that direction for the current day.</p>` +
+    `<p style="font-size: 1rem;"><strong><u>Rankings</u></strong> - The three bars respectively represent how a stock's trend rate, dip percentage, and volume ratio together compare to those of other symbols also trending in that direction for the given day.</p>` +
     '<p style="font-size: 1rem;">(a large bar indicates a strong signal for the corresponding indicator)</p>' +
     '<p style="font-size: 1rem;"><strong><u>Market Cap</u></strong> - A high-level group describing the size of a company based on the total value of all shares.</p>' +
     '<p style="font-size: 1rem;">(Micro < 300M < Small < 2B < Mid < 10B < Large < 200B < Mega)</p>' +
-    '<p style="font-size: 1rem;"><strong><u>PE Ratio</u></strong> - Compares the price per share of a stock to the earnings per share.</p>' +
+    '<p style="font-size: 1rem;"><strong><u>PE Ratio</u></strong> - Compares the price per share of a company\'s stock to its earnings per share.</p>' +
+    '<p style="font-size: 1rem;">(A PE ratio closer to zero means you are buying into more dollars of earnings per dollar invested)</p>' +
+    '<p style="font-size: 1rem;">(A negative PE ratio means the company is not yet profitable)</p>' +
     `</div>`
 
 const getFooterSection = trendingUpwardsSymbols => '<br/><br/>' +

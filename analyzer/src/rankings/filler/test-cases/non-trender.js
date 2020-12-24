@@ -6,6 +6,7 @@ const nonTrendersTtStatsUnrankedInput = [
         dip_percentage: -0,
         volume_ratio: 0.81,
         market_cap_group: 'Micro',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: 0
     },
     {
@@ -14,6 +15,7 @@ const nonTrendersTtStatsUnrankedInput = [
         dip_percentage: -0.15,
         volume_ratio: 1.22,
         market_cap_group: 'Micro',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: 0
     },
     {
@@ -22,6 +24,7 @@ const nonTrendersTtStatsUnrankedInput = [
         dip_percentage: -0.05,
         volume_ratio: 0.8,
         market_cap_group: 'Micro',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: 0
     }
 ]

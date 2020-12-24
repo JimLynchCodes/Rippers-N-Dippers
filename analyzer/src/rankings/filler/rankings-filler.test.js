@@ -20,8 +20,8 @@ const fiveThingsUpwardsTtStatsUnrankedInput = require('./test-cases/five-things'
 const fiveThingsUpwardsTtStatsRankedOut = require('./test-cases/five-things').fiveThingsUpwardsTtStatsRankedOut
 
 const overTheBoundariesMaxesAndMinsUnrankedInput = require('./test-cases/more-than-maxes-things').overTheBoundariesMaxesAndMinsUnrankedInput
-const overTheBoundariesMaxesAndMinsTtStatsRankedOut = require('./test-cases/more-than-maxes-things').overTheBoundariesMaxesAndMinsTtStatsRankedOut
-// const fiveThingsUpwardsTtStatsRankedOut = require('./test-cases/five-things').fiveThingsUpwardsTtStatsRankedOut
+const overTheBoundariesMaxesAndMinsTtStatsRankedForUpwards = require('./test-cases/more-than-maxes-things').overTheBoundariesMaxesAndMinsTtStatsRankedForUpwards
+const overTheBoundariesMaxesAndMinsTtStatsRankedForDownwards = require('./test-cases/more-than-maxes-things').overTheBoundariesMaxesAndMinsTtStatsRankedForDownwards
 
 const nonTrendersTtStatsUnrankedInput = require('./test-cases/non-trender').nonTrendersTtStatsUnrankedInput
 
@@ -29,28 +29,58 @@ describe('filling in rankings', () => {
 
     it.each([
 
-        // ['single thing upwards', 'upwards', singleThingUpwardsTtStatsUnrankedInput, singleThingUpwardsTtStatsRankedOut],
-        // ['single thing downwards', 'downwards', singleThingDownwardsTtStatsUnrankedInput, singleThingDownwardsTtStatsRankedOut],
+        ['single thing upwards', 'upwards', singleThingUpwardsTtStatsUnrankedInput, singleThingUpwardsTtStatsRankedOut],
+        ['single thing downwards', 'downwards', singleThingDownwardsTtStatsUnrankedInput, singleThingDownwardsTtStatsRankedOut],
 
-        // ['two things upwards', 'upwards', twoThingsUpwardsTtStatsUnrankedInput, twoThingsUpwardsTtStatsRankedOut],
-        // ['two things downwards', 'downwards', twoThingsDownwardsTtStatsUnrankedInput, twoThingsDownwardsTtStatsRankedOut],
+        ['two things upwards', 'upwards', twoThingsUpwardsTtStatsUnrankedInput, twoThingsUpwardsTtStatsRankedOut],
+        ['two things downwards', 'downwards', twoThingsDownwardsTtStatsUnrankedInput, twoThingsDownwardsTtStatsRankedOut],
 
-        // ['three things upwards', 'upwards', threeThingsUpwardsTtStatsUnrankedInput, threeThingsUpwardsTtStatsRankedOut],
-        // ['three things downwards', 'downwards', threeThingsDownwardsTtStatsUnrankedInput, threeThingsDownwardsTtStatsRankedOut],
-        
-        // ['five things upwards', 'downwards', fiveThingsUpwardsTtStatsUnrankedInput, fiveThingsUpwardsTtStatsRankedOut],
-        
-        ['over the boundaries', 'downwards', overTheBoundariesMaxesAndMinsUnrankedInput, overTheBoundariesMaxesAndMinsTtStatsRankedOut],
-        
-        // ['filters out non-trenders up', 'upwards', nonTrendersTtStatsUnrankedInput, [] ],
-        // ['filters out non-trenders down', 'downwards', nonTrendersTtStatsUnrankedInput, [] ],
+        ['three things upwards', 'upwards', threeThingsUpwardsTtStatsUnrankedInput, threeThingsUpwardsTtStatsRankedOut],
+        ['three things downwards', 'downwards', threeThingsDownwardsTtStatsUnrankedInput, threeThingsDownwardsTtStatsRankedOut],
+
+        ['five things upwards', 'downwards', fiveThingsUpwardsTtStatsUnrankedInput, fiveThingsUpwardsTtStatsRankedOut],
+
+        ['over the boundaries', 'upwards', overTheBoundariesMaxesAndMinsUnrankedInput, overTheBoundariesMaxesAndMinsTtStatsRankedForUpwards],
+        ['over the boundaries', 'downwards', overTheBoundariesMaxesAndMinsUnrankedInput, overTheBoundariesMaxesAndMinsTtStatsRankedForDownwards],
+
+        ['works with empty array upwards', 'upwards', [], [[], {
+            "dip": {
+                "max": -Infinity,
+                "min": Infinity,
+            },
+            "trend": {
+                "max": -Infinity,
+                "min": Infinity,
+            },
+            "volume": {
+                "max": -Infinity,
+                "min": Infinity,
+            },
+        },
+        ]],
+
+        ['works with empty array downwards', 'downwards', [], [[], {
+            "dip": {
+                "max": -Infinity,
+                "min": Infinity,
+            },
+            "trend": {
+                "max": -Infinity,
+                "min": Infinity,
+            },
+            "volume": {
+                "max": -Infinity,
+                "min": Infinity,
+            },
+        },
+        ]]
 
     ])('%s', (_message, upOrdown, input, expectedResult) => {
 
         expect(fillInRankings(input, upOrdown)).toEqual(expectedResult)
-        
+
     })
-    
+
     it('throws error when passed bad upwards or downwards string', async () => {
 
         expect(() => {

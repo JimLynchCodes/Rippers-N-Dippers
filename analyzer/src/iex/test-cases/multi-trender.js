@@ -70,9 +70,9 @@ const multiTrenderIexInput = [
 
 const multiTrenderTtResult = [
     [
-        { "dip_percentage": 0.09, "market_cap_group": "Micro", "pe_ratio": -1.29, "symbol": "AFI", "volume_ratio": 1.03, "trend_rate": -5.69 },
+        { "dip_percentage": 8.72, "market_cap_group": "Micro", "pe_ratio": -1.29, "symbol": "AFI", "volume_ratio": 1.03, "trend_rate": -5.69 },
         {
-            "dip_percentage": 0.05,
+            "dip_percentage": 4.56,
             "market_cap_group": "Micro",
             "pe_ratio": -1.57,
             "symbol": "FOO",

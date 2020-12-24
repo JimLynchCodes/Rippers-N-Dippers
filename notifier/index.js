@@ -27,9 +27,12 @@ const main = async () => {
   logger.info(`Notifying of ${numberOfUpwardTrending} trenders and ${numberOfDownwardTrending} losers.`)
 
   const fullTextEmail = getEmailHeader(analyzedStocks) +
-    getTrendingUpwardsSection(analyzedStocks.tt_stats.trending_upwards, 'trending_upwards') +
-    getTrendingDownwardsSection(analyzedStocks.tt_stats.trending_downwards, 'trending_downwards') +
     getDefinitionsSection() +
+    '<br/><br/><div><hr/></div><br/>' +
+    getTrendingUpwardsSection(analyzedStocks.tt_stats.trending_upwards, 'trending_upwards') +
+    '<br/><br/><div><hr/></div><br/>' +
+    getTrendingDownwardsSection(analyzedStocks.tt_stats.trending_downwards, 'trending_downwards') +
+    '<br/><br/><div><hr/></div><br/>' +
     getFooterSection()
 
   if (process.env.DISABLE_ALL_MESSAGE_SENDING === 'true') {
@@ -54,7 +57,7 @@ const main = async () => {
           to: recipient,
           from: process.env.SG_FROM_EMAIL,
           html: fullTextEmail,
-          subject: `Triple Trenders Report! 28 - ${analyzedStocks.date_analyzed}`,
+          subject: `Triple Trenders Report! - ${analyzedStocks.date_analyzed}`,
           asm: {
             group_id: +process.env.SENDGRID_UNSUBSCRIBE_GROUP_ID
           }

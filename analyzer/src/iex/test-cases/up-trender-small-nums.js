@@ -33,7 +33,7 @@ const smallPriceChangesIexInput = [{
     symbol: 'AFI'
 }]
 
-const expectedTtStats = [{ "dip_percentage": 0.01, "market_cap_group": "Micro", "pe_ratio": -1.29, "symbol": "AFI", "volume_ratio": 2, "trend_rate": 0.23 }]
+const expectedTtStats = [{ "dip_percentage": 1, "market_cap_group": "Micro", "pe_ratio": -1.29, "symbol": "AFI", "volume_ratio": 2, "trend_rate": 0.23 }]
 
 const expectedIntermediateStats = [{
     symbol: 'AFI',

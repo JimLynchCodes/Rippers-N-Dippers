@@ -41,65 +41,39 @@ const fillInRankings = (preRankingsTtStatsArray, upOrDown) => {
 
     preRankingsTtStatsArray.forEach(statsForSymbol => {
 
-        console.log('ok : ', statsForSymbol.trend_rate, ' ', rankingsMaxMinsHolder.trend.max)
-
         // trend rate 
-        if (statsForSymbol.trend_rate > rankingsMaxMinsHolder.trend.max) {
-            console.log('new trend max ', statsForSymbol.trend_rate)
+        if (statsForSymbol.trend_rate > rankingsMaxMinsHolder.trend.max &&
+            !statsForSymbol.isOutlier.trend_rate)
             rankingsMaxMinsHolder.trend.max = statsForSymbol.trend_rate
-        }
 
-        if (statsForSymbol.trend_rate < rankingsMaxMinsHolder.trend.min) {
-            console.log('new trend min ', statsForSymbol.trend_rate)
+        if (statsForSymbol.trend_rate < rankingsMaxMinsHolder.trend.min &&
+            !statsForSymbol.isOutlier.trend_rate)
             rankingsMaxMinsHolder.trend.min = statsForSymbol.trend_rate
-        }
 
         // dip
-        if (statsForSymbol.dip_percentage > rankingsMaxMinsHolder.dip.max) {
-            console.log('new dip max ', statsForSymbol.dip_percentage)
+        if (statsForSymbol.dip_percentage > rankingsMaxMinsHolder.dip.max &&
+            !statsForSymbol.isOutlier.dip)
             rankingsMaxMinsHolder.dip.max = statsForSymbol.dip_percentage
-        }
 
-        if (statsForSymbol.dip_percentage < rankingsMaxMinsHolder.dip.min) {
-            console.log('new dip min ', statsForSymbol.dip_percentage)
+        if (statsForSymbol.dip_percentage < rankingsMaxMinsHolder.dip.min &&
+            !statsForSymbol.isOutlier.dip)
             rankingsMaxMinsHolder.dip.min = statsForSymbol.dip_percentage
-        }
 
         // volume 
-        if (statsForSymbol.volume_ratio > rankingsMaxMinsHolder.volume.max) {
+        if (statsForSymbol.volume_ratio > rankingsMaxMinsHolder.volume.max &&
+            !statsForSymbol.isOutlier.volume)
             rankingsMaxMinsHolder.volume.max = statsForSymbol.volume_ratio
-            console.log('new volume max ', statsForSymbol.volume_ratio)
-        }
 
-        if (statsForSymbol.volume_ratio < rankingsMaxMinsHolder.volume.min) {
-            console.log('new volume min ', statsForSymbol.volume_ratio)
+        if (statsForSymbol.volume_ratio < rankingsMaxMinsHolder.volume.min &&
+            !statsForSymbol.isOutlier.volume)
             rankingsMaxMinsHolder.volume.min = statsForSymbol.volume_ratio
-        }
 
     });
-
-    rankingsMaxMinsHolder.trend.min = Math.max(rankingsMaxMinsHolder.trend.min, MINIMUM_TREND_VALUE)
-    rankingsMaxMinsHolder.trend.max = Math.min(rankingsMaxMinsHolder.trend.max, MAXIMUM_TREND_VALUE)
-
-    rankingsMaxMinsHolder.dip.min = Math.max(rankingsMaxMinsHolder.dip.min, MINIMUM_DIP_VALUE)
-    rankingsMaxMinsHolder.dip.max = Math.min(rankingsMaxMinsHolder.dip.max, MAXIMUM_DIP_VALUE)
-
-    rankingsMaxMinsHolder.volume.min = Math.max(rankingsMaxMinsHolder.volume.min, MINIMUM_VOLUME_VALUE)
-    rankingsMaxMinsHolder.volume.max = Math.min(rankingsMaxMinsHolder.volume.max, MAXIMUM_VOLUME_VALUE)
 
     console.log(`mins and maxes for ${upOrDown}`, rankingsMaxMinsHolder)
 
     const rankedStatsArray = preRankingsTtStatsArray
         .map(statsObj => {
-
-            // const dipDistFromMin = statsObj.dip_percentage - Math.max(rankingsMaxMinsHolder.dip.min, MAXIMUM_DIP_VALUE)
-            // const dipDistFromMax = rankingsMaxMinsHolder.dip.max - Math.min(statsObj.dip_percentage, MINIMUM_DIP_VALUE);
-
-            // const trendDistFromMin = statsObj.trend_rate - Math.max(rankingsMaxMinsHolder.trend.min, MAXIMUM_TREND_VALUE)
-            // const trendDistFromMax = rankingsMaxMinsHolder.trend.max - Math.min(statsObj.trend_rate, MINIMUM_TREND_VALUE);
-
-            // const volumeDistFromMin = statsObj.volume_ratio - Math.max(rankingsMaxMinsHolder.volume.min, MAXIMUM_VOLUME_VALUE)
-            // const volumeDistFromMax = rankingsMaxMinsHolder.volume.max - Math.min(statsObj.volume_ratio, MINIMUM_VOLUME_VALUE);
 
             const dipDistFromMin = statsObj.dip_percentage - rankingsMaxMinsHolder.dip.min
             const dipDistFromMax = rankingsMaxMinsHolder.dip.max - statsObj.dip_percentage;
@@ -115,43 +89,45 @@ const fillInRankings = (preRankingsTtStatsArray, upOrDown) => {
              *     Upwards - higher is better
              *     Downwards - lower is better
              */
-            const trendRanking = (trendDistFromMin === trendDistFromMax) ?
+            let trendRanking = (trendDistFromMin === trendDistFromMax) ?
                 1 :
                 (upOrDown === 'upwards' ?
                     trendDistFromMin / (trendDistFromMin + trendDistFromMax) :
                     trendDistFromMax / (trendDistFromMin + trendDistFromMax))
+
+            if (statsObj.trend_rate > rankingsMaxMinsHolder.trend.max)
+                trendRanking = upOrDown === 'upwards' ? 1 : 0
+
+            if (statsObj.trend_rate < rankingsMaxMinsHolder.trend.min)
+                trendRanking = upOrDown === 'upwards' ? 0 : 1
 
             /**
              *   Dip:
              *     Upwards - lower is better
              *     Downwards - higher is better
              */
-            const dipRanking = (dipDistFromMin === dipDistFromMax) ?
+            let dipRanking = (dipDistFromMin === dipDistFromMax) ?
                 1 :
                 (upOrDown === 'upwards') ?
                     dipDistFromMax / (dipDistFromMin + dipDistFromMax) :
                     dipDistFromMin / (dipDistFromMin + dipDistFromMax)
 
-            // Math.min(dipDistFromMax / (dipDistFromMin + dipDistFromMax), MAXIMUM_DIP_VALUE) :
-            // Math.max(dipDistFromMin / (dipDistFromMin + dipDistFromMax), MINIMUM_DIP_VALUE)
+            if (statsObj.dip_percentage > rankingsMaxMinsHolder.dip.max)
+                dipRanking = upOrDown === 'upwards' ? 0 : 1
 
-            // let dipRanking = 0
+            if (statsObj.dip_percentage < rankingsMaxMinsHolder.dip.min)
+                dipRanking = upOrDown === 'upwards' ? 1 : 0
 
-            // if (dipDistFromMin >= dipDistFromMax) {
-            //     dipRanking = 1
-            // }
-            // else {
-            //     dipRanking = (upOrDown === 'upwards' ?
-            //         dipDistFromMax / (dipDistFromMin + dipDistFromMax) :
-            //         dipDistFromMin / (dipDistFromMin + dipDistFromMax))
-            // }
-
-
-
-            // Volume - Higher is always better
-            const volumeRanking = (volumeDistFromMin === volumeDistFromMax) ?
+            // Volume - Regardless of direction, our algo always considers higher volume to be better
+            let volumeRanking = (volumeDistFromMin === volumeDistFromMax) ?
                 1 :
                 volumeDistFromMin / (volumeDistFromMin + volumeDistFromMax)
+
+            if (statsObj.volume_ratio > rankingsMaxMinsHolder.volume.max)
+                volumeRanking = 1
+
+            if (statsObj.volume_ratio < rankingsMaxMinsHolder.volume.min)
+                volumeRanking = 0
 
             statsObj.rankings = {
                 trend: +trendRanking.toFixed(2),

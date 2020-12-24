@@ -23,7 +23,7 @@ describe('converting iex stats to tt stats', () => {
         ['small nums up-trender', smallPriceChangesIexInput, smallPriceChangesTtResult],
         // ['non-trender`', nonTrenderTtIexInput, nonTrenderTtResult],
         // ['up-trender negative slope', upTrendNegativeSlopeIexInput, upTrendNegativeSlopeTtResult],
-        // ['down-trende`r', downTrenderIexInput, downTrenderTtResult],
+        ['down-trende`r', downTrenderIexInput, downTrenderTtResult],
         ['multi-trender', multiTrenderIexInput, multiTrenderTtResult],
     ])('%s', (_message, input, expectedResult) => {
 

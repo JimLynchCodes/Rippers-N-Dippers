@@ -89,9 +89,9 @@ const getStatsForChunk = chunkOfSymbols => {
             chunkOfSymbolsString + '&token=' + process.env.IEX_KEY
 
         console.log('url is: ', url)
-        const axiosResult = await axios.get(url).catch( err => JSON.stringify(err))
+        const axiosResult = await axios.get(url).catch(err => JSON.stringify(err))
 
-        const flatArrayOFSymbols = Object.entries(axiosResult.data).map( ([symbol, obj]) => {
+        const flatArrayOFSymbols = Object.entries(axiosResult.data).map(([symbol, obj]) => {
             obj.stats.symbol = symbol
             return obj.stats
         })
@@ -126,7 +126,7 @@ const getKeyStatsList = uniqueSymbolChunks => {
                 }
 
                 if (i === uniqueSymbolChunks.length - 1) {
-                    
+
                     console.log(`returning ${results.length} results...`)
                     resolve(results)
                 }

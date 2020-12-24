@@ -6,6 +6,7 @@ const singleThingUpwardsTtStatsUnrankedInput = [
         dip_percentage: -0.09,
         volume_ratio: 1.08,
         market_cap_group: 'Micro',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: -1.29
     }
 ]
@@ -18,6 +19,7 @@ const singleThingUpwardsTtStatsRankedOut = [[{
     volume_ratio: 1.08,
     market_cap_group: 'Micro',
     pe_ratio: -1.29,
+    isOutlier: { dip: false, trend_rate: false, volume: false },
     rankings: { trend: 1, dip: 1, volume: 1 }
 }],
 {
@@ -42,6 +44,7 @@ const singleThingDownwardsTtStatsUnrankedInput = [
         dip_percentage: 0.09,
         volume_ratio: 0.78,
         market_cap_group: 'Small',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: 1.29
     }
 ]
@@ -54,6 +57,7 @@ const singleThingDownwardsTtStatsRankedOut = [
         "volume_ratio": 0.78,
         "market_cap_group": "Small",
         "pe_ratio": 1.29,
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         "rankings": {
             "trend": 1,
             "dip": 1,

@@ -6,6 +6,7 @@ const twoThingsUpwardsTtStatsUnrankedInput = [
         dip_percentage: -0.09,
         volume_ratio: 1.08,
         market_cap_group: 'Micro',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: -1.29
     },
     {
@@ -14,6 +15,7 @@ const twoThingsUpwardsTtStatsUnrankedInput = [
         dip_percentage: -1.09,
         volume_ratio: 5.11,
         market_cap_group: 'Large',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: 42.2
     }
 ]
@@ -27,6 +29,7 @@ const twoThingsUpwardsTtStatsRankedOut = [
             volume_ratio: 1.08,
             market_cap_group: 'Micro',
             pe_ratio: -1.29,
+            isOutlier: { dip: false, trend_rate: false, volume: false },
             rankings: { trend: 0, dip: 0, volume: 0 }
         },
         {
@@ -36,6 +39,7 @@ const twoThingsUpwardsTtStatsRankedOut = [
             volume_ratio: 5.11,
             market_cap_group: 'Large',
             pe_ratio: 42.2,
+            isOutlier: { dip: false, trend_rate: false, volume: false },
             rankings: { trend: 1, dip: 1, volume: 1 }
 
         }
@@ -63,6 +67,7 @@ const twoThingsDownwardsTtStatsUnrankedInput = [
         dip_percentage: 0.09,
         volume_ratio: 2.47,
         market_cap_group: 'Small',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: 1.29
     },
     {
@@ -71,6 +76,7 @@ const twoThingsDownwardsTtStatsUnrankedInput = [
         dip_percentage: 4.09,
         volume_ratio: 9.47,
         market_cap_group: 'Large',
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         pe_ratio: 5.29
     }
 ]
@@ -84,6 +90,7 @@ const twoThingsDownwardsTtStatsRankedOut = [
             "volume_ratio": 2.47,
             "market_cap_group": "Small",
             "pe_ratio": 1.29,
+            isOutlier: { dip: false, trend_rate: false, volume: false },
             "rankings": {
                 "trend": 0,
                 "dip": 0,
@@ -97,6 +104,7 @@ const twoThingsDownwardsTtStatsRankedOut = [
             "volume_ratio": 9.47,
             "market_cap_group": "Large",
             "pe_ratio": 5.29,
+            isOutlier: { dip: false, trend_rate: false, volume: false },
             "rankings": {
                 "trend": 1,
                 "dip": 1,

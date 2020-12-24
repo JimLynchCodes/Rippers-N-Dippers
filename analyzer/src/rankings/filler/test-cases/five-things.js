@@ -6,7 +6,8 @@ const fiveThingsUpwardsTtStatsUnrankedInput = [
         dip_percentage: -0.09,
         volume_ratio: 1.08,
         market_cap_group: 'Micro',
-        pe_ratio: -1.29
+        pe_ratio: -1.29,
+        isOutlier: { dip: false, trend_rate: false, volume: false }
     },
     {
         symbol: 'Foo2',
@@ -14,7 +15,8 @@ const fiveThingsUpwardsTtStatsUnrankedInput = [
         dip_percentage: -1.09,
         volume_ratio: 5.11,
         market_cap_group: 'Large',
-        pe_ratio: 42.2
+        pe_ratio: 42.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false }
     },
     {
         symbol: 'Foo3',
@@ -22,7 +24,8 @@ const fiveThingsUpwardsTtStatsUnrankedInput = [
         dip_percentage: -9.09,
         volume_ratio: 8.11,
         market_cap_group: 'Large',
-        pe_ratio: 12.2
+        pe_ratio: 12.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false }
     },
     {
         symbol: 'Foo4',
@@ -30,7 +33,8 @@ const fiveThingsUpwardsTtStatsUnrankedInput = [
         dip_percentage: -10.09,
         volume_ratio: 8.11,
         market_cap_group: 'Large',
-        pe_ratio: 12.2
+        pe_ratio: 12.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false }
     },
     {
         symbol: 'Foo5',
@@ -38,7 +42,8 @@ const fiveThingsUpwardsTtStatsUnrankedInput = [
         dip_percentage: -5.09,
         volume_ratio: 8.11,
         market_cap_group: 'Large',
-        pe_ratio: 12.2
+        pe_ratio: 12.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false }
     }
 ]
 
@@ -50,6 +55,7 @@ const fiveThingsUpwardsTtStatsRankedOut = [[
         volume_ratio: 1.08,
         market_cap_group: 'Micro',
         pe_ratio: -1.29,
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         rankings: { trend: 0.79, dip: 1, volume: 0 }
     },
     {
@@ -59,6 +65,7 @@ const fiveThingsUpwardsTtStatsRankedOut = [[
         volume_ratio: 5.11,
         market_cap_group: 'Large',
         pe_ratio: 42.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         rankings: { trend: 0.64, dip: 0.9, volume: 0.57 }
     },
     {
@@ -68,6 +75,7 @@ const fiveThingsUpwardsTtStatsRankedOut = [[
         volume_ratio: 8.11,
         market_cap_group: 'Large',
         pe_ratio: 12.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         rankings: { trend: 0.07, dip: 0.1, volume: 1 }
     },
     {
@@ -77,6 +85,7 @@ const fiveThingsUpwardsTtStatsRankedOut = [[
         volume_ratio: 8.11,
         market_cap_group: 'Large',
         pe_ratio: 12.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         rankings: { trend: 0, dip: 0, volume: 1 }
     },
     {
@@ -86,6 +95,7 @@ const fiveThingsUpwardsTtStatsRankedOut = [[
         volume_ratio: 8.11,
         market_cap_group: 'Large',
         pe_ratio: 12.2,
+        isOutlier: { dip: false, trend_rate: false, volume: false },
         rankings: { trend: 1, dip: 1, volume: 1 }
     }
 ],
