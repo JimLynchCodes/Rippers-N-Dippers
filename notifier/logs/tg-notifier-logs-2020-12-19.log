@@ -1,3 +1,0 @@
-{"message":"Pulled analyzed STOCK data from December 19th 2020 11:24:32 am","level":"info"}
-{"message":"Notifying of 3 trenders and 3 losers.","level":"info"}
-{"level":"info","message":"Error in the tg notifier!  Unexpected token u in JSON at position 1","stack":"SyntaxError: Unexpected token u in JSON at position 1\n    at JSON.parse (<anonymous>)\n    at main (/Users/jlynch/Git-Projects/Triple-Trenders/notifier/index.js:284:12)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"}

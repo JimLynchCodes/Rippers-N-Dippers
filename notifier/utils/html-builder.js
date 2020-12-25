@@ -65,7 +65,7 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
 
             return tr +
                 '<td style="min-width:83px">' +
-                trenderObj.symbol +
+                `<a href="https://finviz.com/quote.ashx?t=${trenderObj.symbol}">${trenderObj.symbol}</a>`+
                 '</td>' +
                 '<td style="min-width:78px">' +
                 trenderObj.trend_rate +
@@ -78,9 +78,9 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
                 '</td>' +
                 '<td style="min-width: 85px; min-height: 50px; padding: 0.5rem; display: flex;">' +
 
-                `<div style="background-color: ${TREND_BAR_COLOR}; min-width: 15px; min-height: ${trendBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
-                `<div style="background-color: ${DIP_BAR_COLOR}; min-width: 15px; min-height: ${dipBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
-                `<div style="background-color: ${VOLUME_BAR_COLOR}; min-width: 15px; min-height: ${volumeBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div title="${(trenderObj.rankings.trend * 100).toFixed(0) + '%'}" style="background-color: ${TREND_BAR_COLOR}; min-width: 15px; min-height: ${trendBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div title="${(trenderObj.rankings.dip * 100).toFixed(0) + '%'}" style="background-color: ${DIP_BAR_COLOR}; min-width: 15px; min-height: ${dipBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
+                `<div title="${(trenderObj.rankings.volume * 100).toFixed(0) + '%'}" style="background-color: ${VOLUME_BAR_COLOR}; min-width: 15px; min-height: ${volumeBarHeight}px; margin: auto auto 0 auto; border: 1.5px solid black;"></div>` +
 
                 '</td>' +
                 '<td style="min-width:75px">' +
