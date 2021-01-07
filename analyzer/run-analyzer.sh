@@ -8,7 +8,7 @@ source ~/.nvm/nvm.sh
 source ~/.profile
 
 # Navigate into the project directory.
-cd ~/Git-Projects/Ameritrader-Bots/triple-trenders-analyzer
+cd ~/Git-Projects/Triple-Trenders/analyzer
 
 # Use project's preferred node version from .nvmrc file.
 nvm use

@@ -1,0 +1,10 @@
+{"message":"Pulled analyzed STOCK data from January 6th 2021 10:05:43 pm","level":"info"}
+{"message":"Notifying of 3 trenders and 2 losers.","level":"info"}
+{"message":"sendgrid recipients: [\"mrdotjim@gmail.com\"]","level":"info"}
+{"message":"SEND_TO_ONLY_ADMIN is true - NOT sending to real recipients... only: mrdotjim@gmail.com","level":"info"}
+{"message":"Mail has been sent to mrdotjim@gmail.com!","level":"info"}
+{"message":"Pulled analyzed STOCK data from January 6th 2021 10:57:58 pm","level":"info"}
+{"message":"Notifying of 3 trenders and 2 losers.","level":"info"}
+{"message":"sendgrid recipients: [\"mrdotjim@gmail.com\"]","level":"info"}
+{"message":"SEND_TO_ONLY_ADMIN is true - NOT sending to real recipients... only: mrdotjim@gmail.com","level":"info"}
+{"message":"Mail has been sent to mrdotjim@gmail.com!","level":"info"}

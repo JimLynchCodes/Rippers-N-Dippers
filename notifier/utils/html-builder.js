@@ -11,7 +11,7 @@ const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHT
     '<br/>' +
     '<h1>Triple Trenders</h1>' +
     '<br/>' +
-    '<p style="font-size: 1rem;">A modern combination of high-growth value investing and technical trend analysis.</p>' +
+    '<p style="font-size: 1rem;">The ultimate technical analysis report and momentum detection tool.</p>' +
     '<br/>' +
     '<p style="font-size: 1rem;">' +
     `This report is based on market close data from ${analyzedStocks.date_analyzed}.<br/><br/>All stocks in the NYSE, Nasdaq, and AMEX exchanges were considered.` +
