@@ -1,0 +1,5 @@
+{"message":"Pulled analyzed STOCK data from December 23rd 2020 10:26:24 pm","level":"info"}
+{"message":"Notifying of 570 trenders and 486 losers.","level":"info"}
+{"message":"sendgrid recipients: [\"mrdotjim@gmail.com\"]","level":"info"}
+{"message":"SEND_TO_ONLY_ADMIN is true - NOT sending to real recipients... only: mrdotjim@gmail.com","level":"info"}
+{"message":"Mail has been sent to mrdotjim@gmail.com!","level":"info"}

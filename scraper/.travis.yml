@@ -21,7 +21,7 @@ install:
   - cd ..
 
 before_script:
-  - echo do pre-scripts things here...
+  - echo not doing any pre-scripts things...
 
 script:
    - npm run scrape:headless

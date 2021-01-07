@@ -22,6 +22,32 @@ npm i
 
 <br/>
 
+
+### Barchart username and password
+
+When running locally, set these path variables using "CYPRESS_" as the prefix so cypress can see them.
+
+Note, use the $'' syntax to allow for special characters...
+```
+export CYPRESS_BARCHART_USER=$'jimbo@boofar.com'
+export CYPRESS_BARCHART_PW=$'derpderp123'
+```
+
+Run this to check the values currently set in your shell:
+```
+printenv | grep CYPRESS
+```
+
+___Note: When running on the build server, set the above environment variables in the CI admin.___
+
+## Backend Env (Mongo Variables)
+
+Create a file `backend/.env` with the values to connect to your production database.
+
+_Note: If you want to change the collection names you must also change the values in `cypress.json`.
+
+<br/>
+
 ### _Running The Google Theme Scraper_
 
 ### Start A Local Mongo Instance
@@ -37,6 +63,24 @@ brew services list
 ```
 
 # Running The Scraper
+
+
+tldr;
+
+```
+./run-scraper.sh
+```
+
+you may need to add execute permission for the file:
+```
+chmod +x ./run-scraper.sh
+```
+
+<br/>
+
+### Long Version
+
+
 - concurrently starts up the scraper's "back-end" and "front-end".
 - back-end is a local express node server that interacts with the database and takes REST calls from front-end.
 - front-end is a cypress-controlled browser process that interacts with web pages.
@@ -134,29 +178,6 @@ _you shouldn't really need to change these much._
 ### Deploying The Scraper
 To deploy this scraper, clone the project on any linux, mac, or windows machine.
 
-### Barchart username and password
-
-When running locally, set these path variables using "CYPRESS_" as the prefix so cypress can see them.
-
-Note, use the $'' syntax to allow for special characters...
-```
-export CYPRESS_BARCHART_USER=$'jimbo@boofar.com'
-export CYPRESS_BARCHART_PW=$'derpderp123'
-```
-
-Run this to check the values currently set in your shell:
-```
-printenv | grep CYPRESS
-```
-
-When running on the build server, set the above two environment variables in the CI admin.
-
-
-Also, be sure to set the values in `cypress.json` for `google_themes_mongo_collection` and   `mongo_collection_tt_scraper` to reflect the mongo collections in which you'd like to save each scraper's data.
-
-Similarly, set the value in `cypress.json` for `mongo_database_name` is you would like to use a database name other than `scrape_db`.  
-
-_Be sure to have the collections with these names inside of the database with this name before running the script!_
 
 ## Create Backend .Env
 
