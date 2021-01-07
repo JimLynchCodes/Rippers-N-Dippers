@@ -12,6 +12,8 @@ before_install:
   - export TZ=America/New_York
 
 install:
+  - cd scraper
+
   - node --version
   - pwd
   - npm install
