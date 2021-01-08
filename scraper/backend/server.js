@@ -10,8 +10,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.raw())
 
 const PORT = 3000
-const mongoUri = process.env['MONGO_URI']
-
 
 app.listen(PORT, () => console.log('Super Scraper backend is listening on port 3000!'))
 
@@ -39,6 +37,8 @@ app.post('/save', async (req, res) => {
     // console.log('eg ', req)
     // console.log('eg ', req.body)
     // const scrapedData = req.body['scraped_data']
+
+    const mongoUri = process.env['MONGO_URI']
 
     const collection = req.body['collection']
     const databaseName = req.body['database_name']
@@ -153,6 +153,8 @@ app.post('/update-bc-scrape', async (req, res) => {
         const trenderOrLoser = req.body['trender_or_loser']
         const timeFrame = req.body['time_frame']
 
+        const mongoUri = process.env['MONGO_URI']
+        
         console.log('Connecting to mongo at: ', mongoUri)
         console.log(`Updating scraped data for: ${stockCategory}, ${trenderOrLoser}, ${timeFrame}`)
 
