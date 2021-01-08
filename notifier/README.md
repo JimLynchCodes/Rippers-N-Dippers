@@ -5,6 +5,7 @@
 This is a quick little node.js script that pulls information from the Alphavantage API about US sector performance and saves it into Mongo.
 
 
+
 # Usage
 
 ## 0) Use Node v12
