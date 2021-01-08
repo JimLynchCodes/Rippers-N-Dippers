@@ -38,6 +38,8 @@ app.post('/save', async (req, res) => {
     // console.log('eg ', req.body)
     // const scrapedData = req.body['scraped_data']
 
+ 
+    console.log('derp: ', process.env['derp'])
     const mongoUri = process.env['MONGO_URI']
 
     const collection = req.body['collection']
@@ -153,8 +155,9 @@ app.post('/update-bc-scrape', async (req, res) => {
         const trenderOrLoser = req.body['trender_or_loser']
         const timeFrame = req.body['time_frame']
 
+        console.log('derp: ', process.env['derp'])
         const mongoUri = process.env['MONGO_URI']
-        
+
         console.log('Connecting to mongo at: ', mongoUri)
         console.log(`Updating scraped data for: ${stockCategory}, ${trenderOrLoser}, ${timeFrame}`)
 
