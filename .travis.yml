@@ -24,10 +24,10 @@ install:
   - cd ..
 
 before_script:
-  - echo not doing any pre-scripts things...
+  - chmod +x ./run-scraper.sh
 
 script:
-   - npm run scrape:headless
+   - ./run-scraper.sh
 
 after_script:
   - echo ran script
