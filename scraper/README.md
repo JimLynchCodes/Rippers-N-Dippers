@@ -48,7 +48,11 @@ _Note: If you want to change the collection names you must also change the value
 
 <br/>
 
-### _Running The Google Theme Scraper_
+### When Deployed...
+
+Run via Travis CI on travis-ci.com
+
+Be sure to set the environment variables!
 
 ### Start A Local Mongo Instance
 
