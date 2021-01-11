@@ -179,6 +179,10 @@ _you shouldn't really need to change these much._
 To deploy this scraper, clone the project on any linux, mac, or windows machine.
 
 
+## Run on Travis CI
+REMEMBER - when exporting variables with values that contain special characters, both in the terminal shell and in travis ci, you should wrap the values in single quotes!!
+
+
 ## Create Backend .Env
 
 Create a `.env` file in the `backend` folder with the same structure of `./backend/.env_SAMPLE`, filling in your mongo connections information.

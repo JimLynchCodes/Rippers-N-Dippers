@@ -34,14 +34,8 @@ app.post('/shutdown-backend', (req, res) => {
 
 app.post('/save', async (req, res) => {
 
-    // console.log('eg ', req)
-    // console.log('eg ', req.body)
-    // const scrapedData = req.body['scraped_data']
-
- 
-    console.log('derp: ', process.env['derp'])
     const mongoUri = process.env['MONGO_URI']
-
+    
     const collection = req.body['collection']
     const databaseName = req.body['database_name']
 
