@@ -35,11 +35,11 @@ app.post('/shutdown-backend', (req, res) => {
 app.post('/save', async (req, res) => {
 
     const mongoUri = process.env['MONGO_URI']
-    
+
     const collection = req.body['collection']
     const databaseName = req.body['database_name']
 
-    console.log('Connecting to mongo at: ', mongoUri?.substring(0, 5))
+    console.log('Connecting to mongo at: ', mongoUri.substring(0, 5))
     console.log('Requesting insert in coll: ', collection, ' of db: ', databaseName)
 
     MongoClient.connect(mongoUri, (err, db) => {
