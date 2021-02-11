@@ -11,7 +11,7 @@ source ~/.nvm/nvm.sh
 source ~/.profile
 
 # Navigate into the project directory.
-cd ~/Git-Projects/Triple-Trenders/notifier
+cd ~/Git-Projects/Rippers-N-Dippers/notifier
 
 # Use project's preferred node version from .nvmrc file.
 nvm use

@@ -161,7 +161,7 @@ const getFooterSection = trendingUpwardsSymbols => '<br/><br/>' +
     '<h2>Your Friend & Fellow Trader,</h2>' +
     '<h1>&nbsp;&nbsp;&nbsp;&nbsp;Jim Lynch</h1>' +
     '</div>' +
-    '<img style="margin: auto;" src="https://raw.githubusercontent.com/JimLynchCodes/Triple-Trenders/main/notifier/images/jim-headshot-hand-drawn.jpeg" />' +
+    '<img style="margin: auto;" src="https://raw.githubusercontent.com/JimLynchCodes/Rippers-N-Dippers/main/notifier/images/jim-headshot-hand-drawn.jpeg" />' +
     '</div>' +
     '<br/>' +
     '<br/>' +
