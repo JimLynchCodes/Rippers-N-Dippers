@@ -29,7 +29,7 @@ When(`I scrape the {string} {string} for {string} on the {string}, new data: {st
     });
 
     // Sort Chart Alphabetically by "Name" (So that we can match up the main view and technical view)
-    cy.get('th:contains(Symbol)', { timeout: 1000 }).click()
+    cy.get('th:contains(Symbol)', { timeout: 1500 }).click()
 
 
     cy.get('table').find('tr').then(($tables) => {
