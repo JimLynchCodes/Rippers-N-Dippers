@@ -179,8 +179,6 @@ app.post('/update-bc-scrape', async (req, res) => {
                 $set: { [nestedFieldToUpdate]: scrapedData[stockCategory][trenderOrLoser][timeFrame] }
             }
 
-            console.log('res? ', res)
-
             dbo.collection(collection).updateMany(todaysObjQuery, newvalues, (err, response) => {
                 if (err) reject(err)
                 console.log(response);
