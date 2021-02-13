@@ -1,6 +1,6 @@
 import { Given } from "cypress-cucumber-preprocessor/steps";
 
-Given(`I'm logged in`, (categoryObjectKey) => {
+Given(`I'm logged in`, async (categoryObjectKey) => {
 
     cy.visit('https://www.barchart.com/login')
 
@@ -10,7 +10,7 @@ Given(`I'm logged in`, (categoryObjectKey) => {
 
     cy.get('input[placeholder="Password"]').type(Cypress.env('BARCHART_PW'))
 
-    cy.get('button:contains(Log In)').click()
+    await cy.get('button:contains(Log In)').click()
 
 })
 
