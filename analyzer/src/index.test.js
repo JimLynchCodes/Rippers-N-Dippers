@@ -1,6 +1,6 @@
 describe('sector analyzer', () => {
 
-    it('should correctly calculate sector triple trenders nd weighted trenders', async () => {
+    it('should correctly calculate sector rippers n\' dippers nd weighted trenders', async () => {
 
         console.log('running test')
 

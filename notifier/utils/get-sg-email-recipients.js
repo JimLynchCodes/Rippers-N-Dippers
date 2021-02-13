@@ -1,6 +1,6 @@
 const logger = require('./logger')
 
-const getSendgridTripleTrendersEmailRecipients = listId => {
+const getSendgridRippersNDippersEmailRecipients = listId => {
 
   return new Promise(async resolve => {
 
@@ -40,5 +40,5 @@ const getSendgridTripleTrendersEmailRecipients = listId => {
 }
 
 module.exports = {
-  getSendgridTripleTrendersEmailRecipients
+  getSendgridRippersNDippersEmailRecipients
 }

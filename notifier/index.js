@@ -4,7 +4,7 @@ const logger = require('./utils/logger')
 const moment = require('moment')
 const sg = require('@sendgrid/mail');
 
-const getSendgridTripleTrendersEmailRecipients = require('./utils/get-sg-email-recipients').getSendgridTripleTrendersEmailRecipients
+const getSendgridRippersNDippersEmailRecipients = require('./utils/get-sg-email-recipients').getSendgridRippersNDippersEmailRecipients
 const readStocksTtAnalysis = require('./utils/mongo-functions').readStocksTtAnalysis
 
 const getEmailHeader = require('./utils/html-builder').getEmailHeader
@@ -42,7 +42,7 @@ const main = async () => {
 
     return new Promise(async resolve => {
 
-      const sgTtTrueRecipients = await getSendgridTripleTrendersEmailRecipients(process.env.TT_SG_EMAIL_SUBSCRIBERS_LIST_ID)
+      const sgTtTrueRecipients = await getSendgridRippersNDippersEmailRecipients(process.env.TT_SG_EMAIL_SUBSCRIBERS_LIST_ID)
 
       logger.info(`sendgrid recipients: ${JSON.stringify(sgTtTrueRecipients)}`)
 
@@ -57,7 +57,7 @@ const main = async () => {
           to: recipient,
           from: process.env.SG_FROM_EMAIL,
           html: fullTextEmail,
-          subject: `Triple Trenders Report! - ${analyzedStocks.date_analyzed}`,
+          subject: `Rippers N' Dippers Report! - ${analyzedStocks.date_analyzed}`,
           asm: {
             group_id: +process.env.SENDGRID_UNSUBSCRIBE_GROUP_ID
           }

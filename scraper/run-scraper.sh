@@ -18,4 +18,4 @@ printf "$(date)\n\n"
 
 npm run create-db-object && npm run scrape:headless-largecap && npm run scrape:headless-midcap-show-memory && npm run scrape:headless-smallcap-show-memory && npm run scrape:headless-microcap-show-memory
 
-printf "\nTriple Trender Scraper cronjob has completed!\n"
+printf "\nRippers N Dippers Scraper cronjob has completed!\n"

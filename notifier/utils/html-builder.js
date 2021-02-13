@@ -9,7 +9,7 @@ const VOLUME_BAR_COLOR = '#A9CEE8'
 const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">` +
     '<div style="background:rgb(255,255,255);max-width:700px;width:100%;margin:0px auto; text-align: center;">' +
     '<br/>' +
-    '<h1>Triple Trenders</h1>' +
+    '<h1>Rippers N\' Dippers</h1>' +
     '<br/>' +
     '<p style="font-size: 1rem;">The ultimate technical analysis report and momentum detection tool.</p>' +
     '<br/>' +
@@ -65,7 +65,7 @@ const buildTtRowFromStocksArray = (stocksArray, upwardsOrDownwards) => {
 
             return tr +
                 '<td style="min-width:83px">' +
-                `<a href="https://finviz.com/quote.ashx?t=${trenderObj.symbol}">${trenderObj.symbol}</a>`+
+                `<a href="https://finviz.com/quote.ashx?t=${trenderObj.symbol}">${trenderObj.symbol}</a>` +
                 '</td>' +
                 '<td style="min-width:78px">' +
                 trenderObj.trend_rate +
@@ -150,7 +150,7 @@ const getDefinitionsSection = trendingUpwardsSymbols => `<br/><br/><div style="t
 
 const getFooterSection = trendingUpwardsSymbols => '<br/><br/>' +
     `<p style="font-size: 1rem;">Good luck and enjoy the ride!</p><br/>` +
-    '<p style="font-size: 1rem;">Have friends who want to receive the daily Triple Trenders report? <a href="https://cdn.forms-content.sg-form.com/f034a73f-a80f-11ea-8e17-928c85d443c0">Sign up here</a>!</p>' +
+    '<p style="font-size: 1rem;">Have friends who want to receive the daily Rippers N\' Dippers report? <a href="https://cdn.forms-content.sg-form.com/f034a73f-a80f-11ea-8e17-928c85d443c0">Sign up here</a>!</p>' +
     '<br/>' +
     `<p style="font-size: 1rem;">We want to hear from YOU! If you enjoy getting these stock picks or have any questions at all, just reply to this email and say hello!</p>` +
     '<div>' +

@@ -1,4 +1,4 @@
-# Triple Trenders Notifier
+# Rippers N' Dippers Notifier
 
 
 
@@ -82,6 +82,6 @@ these env variables allow for manually running through all the various things wi
 
 ## Sign Up Link
 
-If you or a friend would like to sign up to recieve Triple Trenders email notifactions, you can do so here:
+If you or a friend would like to sign up to recieve Rippers N' Dippers email notifactions, you can do so here:
 
 https://cdn.forms-content.sg-form.com/a05e73a6-3ffa-11eb-914e-2e15f5059f35

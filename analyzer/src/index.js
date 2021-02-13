@@ -15,7 +15,7 @@ const markOutliers = require('./utils/outlier-marker/outlier-marker').markOutlie
 const logger = require('./utils/logger')
 
 /**
- *  Analyzes scraped US sector data (triple trender's algo) for the current day.
+ *  Analyzes scraped US sector data (ripper n dipper's algo) for the current day.
  */
 
 const main = async () => {

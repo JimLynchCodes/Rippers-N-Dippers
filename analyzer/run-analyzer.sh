@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-printf "\nRunning Triple Trenders Analyzer!\n"
+printf "\nRunning Rippers N' Dippers Analyzer!\n"
 
 # Load these for nvm and node.
 source ~/.bashrc

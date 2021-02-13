@@ -1,5 +1,5 @@
 /**
- * Mongo-related functions for the Triple Trenders notifier.
+ * Mongo-related functions for the Rippers N' Dippers notifier.
  */
 
 const MongoClient = require('mongodb').MongoClient;

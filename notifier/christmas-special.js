@@ -4,7 +4,7 @@ const logger = require('./utils/logger')
 const moment = require('moment')
 const sg = require('@sendgrid/mail');
 
-const getSendgridTripleTrendersEmailRecipients = require('./utils/get-sg-email-recipients').getSendgridTripleTrendersEmailRecipients
+const getSendgridRippersNDippersEmailRecipients = require('./utils/get-sg-email-recipients').getSendgridRippersNDippersEmailRecipients
 const readStocksTtAnalysis = require('./utils/mongo-functions').readStocksTtAnalysis
 
 const getEmailHeader = require('./utils/html-builder').getEmailHeader
@@ -17,27 +17,27 @@ const getFooterSection = require('./utils/html-builder').getFooterSection
 const christmasEmailHeader = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">` +
   '<div style="background:rgb(255,255,255);max-width:700px;width:100%;margin:0px auto; text-align: center;">' +
   '<br/>' +
-  '<h1>Triple Trenders Sneak Peek</h1>' +
+  '<h1>Rippers N\' Dippers Sneak Peek</h1>' +
   '<br/>' +
   '<br/>' +
   '<p style="font-size: 1rem;">Wow, what a year! With 2020 coming to a close the holidays give us a chance to unwind, be with family, and forget about the daily stresses of life for a bit.</p>' +
   '<br/>' +
   '<p style="font-size: 1rem;">Lucky for me (and you!), the quarantine has allowed me to spend a ton of time coding, experimenting with trading algos, and drinking green dragon tincture... 🍵</p>' +
   '<br/>' +
-  '<p style="font-size: 1rem;">As thanks for being one of the first few subscribers to the <i>Triple Gainers</i> daily newsletter, I\'d like to introduce you to a sneak peek at the new and improved, next iteration: "The Triple Trenders"!</p>' +
+  '<p style="font-size: 1rem;">As thanks for being one of the first few subscribers to the <i>Rippers N Dippers</i> daily newsletter, I\'d like to introduce you to a sneak peek at the new and improved, next iteration: "The Rippers N\' Dippers"!</p>' +
   '<br/>' +
-  '<p style="font-size: 1rem;">Although it uses similar metrics, the Triple Trenders considers trend rate, dip percentage, and volume <i>at the same time</i> to give you a more clear picture of what equities to actually go long (or short), and it aims to dramatically simplify the effort needed to read the table.</p>' +
+  '<p style="font-size: 1rem;">Although it uses similar metrics, the Rippers N\' Dippers considers trend rate, dip percentage, and volume <i>at the same time</i> to give you a more clear picture of what equities to actually go long (or short), and it aims to dramatically simplify the effort needed to read the table.</p>' +
   '<p style="font-size: 1rem;">(rows nearer the top of the table are better. The bigger the three bars in the rankings cell, the better bet our TT algo thinks it will be)</p>' +
   '<br/>' +
   '<p style="font-size: 1rem;"><i>Note: This email is super long! To see the the full content you will likely need to scroll to the bottom and click, "View entire message".</i></p>' +
   '<br/>' +
-  '<p style="font-size: 1rem;">While the Triple Gainers looked at only large cap US stocks, the Triple Trenders scans <i>all</i> stocks in the NYSA, Nasdaq, and AMEX, and we have added the "Market Cap" column to give you a rough idea of the size of the company.</p>' +
+  '<p style="font-size: 1rem;">While the Rippers N Dippers looked at only large cap US stocks, the Rippers N\' Dippers scans <i>all</i> stocks in the NYSA, Nasdaq, and AMEX, and we have added the "Market Cap" column to give you a rough idea of the size of the company.</p>' +
   '<br/>' +
   '<p style="font-size: 1rem;">Also, the PE Ratio has been added to the table as a reminder that we\'re investing in profit-generating companies and that when you hold stock you\'re buying the ownership of future profits of a company, proportional to the other investors who own that stock (we ain\'t just flippin\' cypto over here!).</p>' +
   '<br/>' +
-  '<p style="font-size: 1rem;">Sometime next week I\'ll set the Triple Trenders email live, and you\'ll start receiving a Triple Trender report every day after the market closes.</p>' +
+  '<p style="font-size: 1rem;">Sometime next week I\'ll set the Rippers N\' Dippers email live, and you\'ll start receiving a Rippers N Dippers report every day after the market closes.</p>' +
   '<br/>' +
-  '<p style="font-size: 1rem;">Everyone who was signed up for Triple Gainers will be automatically subscribed to the new Triple Trenders list (if you wish to not be added, just reply to this email saying so).</p>' +
+  '<p style="font-size: 1rem;">Everyone who was signed up for Rippers N Dippers will be automatically subscribed to the new Rippers N\' Dippers list (if you wish to not be added, just reply to this email saying so).</p>' +
   '<br/>' +
   '<p style="font-size: 1rem;">Thanks so much for supporting me on this journey to build the ultimate stock tips picker, and enjoy the free recommendations!</p>' +
   '<br/>' +
@@ -53,7 +53,7 @@ const christmasEmailHeader = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Stric
   '<hr/>' +
   '<br/>' +
   '<br/>' +
-  '<h1>Triple Trenders</h1>' +
+  '<h1>Rippers N\' Dippers</h1>' +
   '<br/>' +
   '<p style="font-size: 1rem;">A modern combination of high-growth value investing and technical trend analysis.</p>' +
   '<br/>' +
@@ -97,7 +97,7 @@ const main = async () => {
 
     return new Promise(async resolve => {
 
-      const sgTtTrueRecipients = await getSendgridTripleTrendersEmailRecipients(process.env.TT_SG_EMAIL_SUBSCRIBERS_LIST_ID)
+      const sgTtTrueRecipients = await getSendgridRippersNDippersEmailRecipients(process.env.TT_SG_EMAIL_SUBSCRIBERS_LIST_ID)
 
       logger.info(`sendgrid recipients: ${JSON.stringify(sgTtTrueRecipients)}`)
 
@@ -112,7 +112,7 @@ const main = async () => {
           to: recipient,
           from: process.env.SG_FROM_EMAIL,
           html: fullTextEmail,
-          subject: `Triple Trenders Sneak Peek!`,
+          subject: `Rippers N' Dippers Sneak Peek!`,
           asm: {
             group_id: +process.env.SENDGRID_UNSUBSCRIBE_GROUP_ID
           }

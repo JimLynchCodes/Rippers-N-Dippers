@@ -1,4 +1,4 @@
-Triple Trenders Scraper!
+Rippers N' Dippers Scraper!
 
 <!-- [![Build Status](https://travis-ci.org/JimLynchCodes/Super-Scraper.svg?branch=master)](https://travis-ci.org/JimLynchCodes/Super-Scraper) -->
 

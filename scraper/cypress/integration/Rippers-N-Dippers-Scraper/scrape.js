@@ -21,13 +21,9 @@ When(`I scrape the {string} {string} for {string} on the {string}, new data: {st
     // cy.get('div.reveal-modal-bg', { timeout: 3000 }).click()
     // cy.get('.bc-glyph-times', { timeout: 3000 }).click()
 
+    // X out of modal if it appears...
     cy.get('body').then((body) => {
         if (body.find('.bc-modal-content', { timeout: 1000 }).length > 0) {
-        // if (body.find('.bc-modal-content', { timeout: 2000 }).length > 0) {
-            // cy.get('div.reveal-modal-bg').click();
-
-            cy.log('elem is: ', body.find('.bc-modal-content i.bc-glyph-times', { timeout: 1000 })) 
-            // cy.window().click(1, 1);
             cy.get('.bc-modal-content i.bc-glyph-times').click({force: true})  
         }
     });

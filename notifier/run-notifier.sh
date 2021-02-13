@@ -2,7 +2,7 @@
 
 # Print some nice things in the logs.
 printf "=======================================\n\n"
-printf "Running Triple Trender Notifier...\n"
+printf "Running Rippers N Dippers Notifier...\n"
 printf "$(date)\n\n"
 
 # Load these for nvm and node.
@@ -19,4 +19,4 @@ nvm use
 # Run the cron job!
 npm start
 
-printf "\nTriple Trenders Notifier cronjob has completed!\n"
+printf "\nRippers N' Dippers Notifier cronjob has completed!\n"
