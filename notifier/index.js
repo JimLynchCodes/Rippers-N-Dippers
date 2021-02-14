@@ -57,7 +57,7 @@ const main = async () => {
           to: recipient,
           from: process.env.SG_FROM_EMAIL,
           html: fullTextEmail,
-          subject: `Rippers N' Dippers Report! - ${analyzedStocks.date_analyzed}`,
+          subject: `Rippers N' Dippers! - ${analyzedStocks.date_analyzed}`,
           asm: {
             group_id: +process.env.SENDGRID_UNSUBSCRIBE_GROUP_ID
           }

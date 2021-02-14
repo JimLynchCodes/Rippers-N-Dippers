@@ -91,7 +91,7 @@ const getStatsForChunk = chunkOfSymbols => {
         console.log('url is: ', url)
         const axiosResult = await axios.get(url).catch(err => JSON.stringify(err))
 
-        console.log('got axios reult: ', axiosResult)
+        // console.log('got axios reult: ', axiosResult)
 
         const flatArrayOFSymbols = Object.entries(axiosResult.data).map(([symbol, obj]) => {
             obj.stats.symbol = symbol
@@ -133,7 +133,7 @@ const getKeyStatsList = uniqueSymbolChunks => {
                     resolve(results)
                 }
 
-            }, i * 600)
+            }, i * 460)
 
         })
     })

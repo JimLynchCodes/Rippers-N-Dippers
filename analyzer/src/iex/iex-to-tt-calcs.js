@@ -24,7 +24,7 @@ const getMarketCapGroup = (marketCapNum) => {
 
 const iexStatsToTtStats = iexStats => {
 
-    console.log('full stats array: ', iexStats)
+    // console.log('full stats array: ', iexStats)
 
     const ttStats = []
     const intermediateStats = []

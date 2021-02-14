@@ -10,15 +10,15 @@ const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHT
     '<div style="background:rgb(255,255,255);max-width:700px;width:100%;margin:0px auto; text-align: center;">' +
     '<br/>' +
     '<h1>Rippers N\' Dippers</h1>' +
-    '<br/>' +
     '<p style="font-size: 1rem;">The ultimate technical analysis report and momentum detection tool.</p>' +
-    '<br/>' +
     '<p style="font-size: 1rem;">' +
-    `This report is based on market close data from ${analyzedStocks.date_analyzed}.<br/><br/>All stocks in the NYSE, Nasdaq, and AMEX exchanges were considered.` +
+    `This report is based on 6 month historical data, scraped on ${analyzedStocks.date_analyzed}.<br/><br/>All stocks in the NYSE, Nasdaq, and AMEX exchanges were considered.` +
     '</p>' +
     '<p style="font-size: 2rem;">' +
     '<div style="width:100%;text-align:center;width:auto;min-height:50px;">🏆</div>' +
     '</p>' +
+    '<p style="font-size: 1rem;">Have friends who want to receive the daily Rippers N\' Dippers report? <a href="https://cdn.forms-content.sg-form.com/f034a73f-a80f-11ea-8e17-928c85d443c0">Sign up here</a>!</p>' +
+    '<br/>' +
     '<hr/>' +
     '<br/>'
 
@@ -150,7 +150,6 @@ const getDefinitionsSection = trendingUpwardsSymbols => `<br/><br/><div style="t
 
 const getFooterSection = trendingUpwardsSymbols => '<br/><br/>' +
     `<p style="font-size: 1rem;">Good luck and enjoy the ride!</p><br/>` +
-    '<p style="font-size: 1rem;">Have friends who want to receive the daily Rippers N\' Dippers report? <a href="https://cdn.forms-content.sg-form.com/f034a73f-a80f-11ea-8e17-928c85d443c0">Sign up here</a>!</p>' +
     '<br/>' +
     `<p style="font-size: 1rem;">We want to hear from YOU! If you enjoy getting these stock picks or have any questions at all, just reply to this email and say hello!</p>` +
     '<div>' +
@@ -165,9 +164,9 @@ const getFooterSection = trendingUpwardsSymbols => '<br/><br/>' +
     '</div>' +
     '<br/>' +
     '<br/>' +
-    '<p style="font-size: 1rem;">Disclaimer: any information here may be incorrect. Invest at your own risk!</p>' +
+    '<p style="font-size: 1rem;"><i>Disclaimer: any information here may be incorrect. Invest at your own risk!</i></p>' +
     '</div>' +
-    '<br/>' +
+    '<p style="font-size: 1rem;">Shoutout to <a href="https://www.barchart.com/">barchart.com</a> and <a href="https://iexcloud.io/">iexcloud.io</a> for generously<br/>providing data used in generating this report!</p>' +
     '<br/>' +
     '<div>' +
     '<a href="<%asm_group_unsubscribe_raw_url%>">Unsubscribe</a> | <a href="<%asm_preferences_raw_url%>">Manage Email Preferences</a>' +
