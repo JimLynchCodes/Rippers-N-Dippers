@@ -23,8 +23,8 @@ When(`I scrape the {string} {string} for {string} on the {string}, new data: {st
 
     // X out of modal if it appears...
     cy.get('body').then((body) => {
-        if (body.find('.bc-modal-content', { timeout: 1000 }).length > 0) {
-            cy.get('.bc-modal-content i.bc-glyph-times').click({force: true})  
+        if (body.find('.bc-modal-content', { timeout: 2000 }).length > 0) {
+            cy.get('.bc-modal-content .bc-glyph-times').click({force: true})  
         }
     });
 
