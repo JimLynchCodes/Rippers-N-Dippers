@@ -1,4 +1,5 @@
-require('dotenv').config()
+const dotenv = require('dotenv');
+dotenv.config()
 const moment = require('moment')
 const mongoFunctions = require('./db/mongo-functions')
 const iexCaller = require('./iex/iex-caller')
@@ -29,12 +30,22 @@ const main = async () => {
 
         const scrapedData = await readLatest()
 
+        // console.log(JSON.stringify(scrapedData))
+
         const uniqueSymbols = getUniqueSymbols(scrapedData)
+
+        // console.log(uniqueSymbols, 'unique symbols')
+        console.log(uniqueSymbols.gainers.length, 'unique symbols')
+        console.log(uniqueSymbols.losers.length, 'unique symbols')
+        
+        console.log(process.env.MAX_SYMBOLS_PER_LIST, ' MAX_SYMBOLS_PER_LIST');
 
         const chunkedUniqueGainersAndLosers = {
             gainers: splitIntoChunks(uniqueSymbols.gainers, process.env.MAX_SYMBOLS_PER_LIST),
             losers: splitIntoChunks(uniqueSymbols.losers, process.env.MAX_SYMBOLS_PER_LIST)
         }
+        
+        console.log(chunkedUniqueGainersAndLosers, 'chunkedUniqueGainersAndLosers')
 
         const keyStats = {
             gainers: await iexCaller.getKeyStatsList(chunkedUniqueGainersAndLosers.gainers),
@@ -48,7 +59,7 @@ const main = async () => {
         const trendingGainersTtStats = gainerTtStats.filter(statsObj => !isNaN(+statsObj.trend_rate))      
         const trendingLosersTtStats = loserTtStats.filter(statsObj => !isNaN(+statsObj.trend_rate))          
 
-        console.log('gainer tt stats: ', trendingGainersTtStats)
+        // console.log('gainer tt stats: ', trendingGainersTtStats)
 
         const [gainersTtStatsArrCheckedForOutliers, gainersOutliersObj] = markOutliers(trendingGainersTtStats)
         const [losersTtStatsArrCheckedForOutliers, losersOutliersObj] = markOutliers(trendingLosersTtStats)
@@ -98,7 +109,8 @@ const main = async () => {
 }
 
 main()
-    .then(() => {
+    .then((result) => {
+        console.log('Finished! ', result)
         process.exit()
     })
     .catch(err => {

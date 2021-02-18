@@ -2,11 +2,9 @@
 const getUniqueSymbols = scrapedData => {
 
     let uniqueSymbols = {
-        gainers: [],
-        losers: []
+        gainers: new Set(),
+        losers: new Set()
     }
-
-    // console.log('scraped data: ', scrapedData)
 
     Object.entries(scrapedData['categories']).forEach(([marketCap, gainersAndLosers]) => {
 
@@ -17,17 +15,20 @@ const getUniqueSymbols = scrapedData => {
                 const symbolsWithHeaders = stocksData.map(stockDatum => stockDatum[0].trim())
 
                 const symbols = symbolsWithHeaders.slice(1) // removes the first element, the literal string: 'Symbol'
-
                 console.log('gainer or loser: ', gainerOrLoser)
 
-                uniqueSymbols[gainerOrLoser] = [...symbols, ...uniqueSymbols[gainerOrLoser]]
+                symbols.forEach(symbol => uniqueSymbols[gainerOrLoser].add(symbol))
             })
 
-            uniqueSymbols[gainerOrLoser] = Array.from(new Set(uniqueSymbols[gainerOrLoser]))
         })
     })
 
-    return uniqueSymbols
+    console.log('ok')
+
+    return {
+        gainers: Array.from(uniqueSymbols.gainers),
+        losers: Array.from(uniqueSymbols.losers)
+    }
 }
 
 module.exports = {

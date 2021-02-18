@@ -12,6 +12,8 @@ Given(`I'm logged in`, async (categoryObjectKey) => {
 
     await cy.get('button:contains(Log In)').click()
 
+    cy.wait(200)
+
 })
 
 Given(`I navigate to the {string} page`, (categoryObjectKey) => {
