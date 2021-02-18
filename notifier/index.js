@@ -46,7 +46,7 @@ const main = async () => {
 
       logger.info(`sendgrid recipients: ${JSON.stringify(sgTtTrueRecipients)}`)
 
-      logger.info(`SEND_TO_ONLY_ADMIN is ${process.env.SEND_TO_ONLY_ADMIN} -${process.env.SEND_TO_ONLY_ADMIN === 'true' ? ' NOT' : ''} sending to real recipients... ${process.env.SEND_TO_ONLY_ADMIN === 'true' ? 'only' : ''}: ${process.env.ADMIN_EMAIL}`)
+      logger.info(`SEND_TO_ONLY_ADMIN is ${process.env.SEND_TO_ONLY_ADMIN} - ${process.env.SEND_TO_ONLY_ADMIN === 'true' ? ' NOT' : ''} sending to real recipients... ${process.env.SEND_TO_ONLY_ADMIN === 'true' ? 'only' : ''}: ${process.env.ADMIN_EMAIL}`)
 
       sgRecipients = process.env.SEND_TO_ONLY_ADMIN !== 'true' ? sgTtTrueRecipients : [process.env.ADMIN_EMAIL]
 

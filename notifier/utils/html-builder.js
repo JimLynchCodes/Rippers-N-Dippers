@@ -17,7 +17,7 @@ const getEmailHeader = analyzedStocks => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHT
     '<p style="font-size: 2rem;">' +
     '<div style="width:100%;text-align:center;width:auto;min-height:50px;">🏆</div>' +
     '</p>' +
-    '<p style="font-size: 1rem;">Have friends who want to receive the daily Rippers N\' Dippers report? <a href="https://cdn.forms-content.sg-form.com/f034a73f-a80f-11ea-8e17-928c85d443c0">Sign up here</a>!</p>' +
+    '<p style="font-size: 1rem;">Have friends who want to receive the daily Rippers N\' Dippers report? <a href="https://cdn.forms-content.sg-form.com/bc799e4b-7212-11eb-b7d9-72cfbf9b238f">Sign up here</a>!</p>' +
     '<br/>' +
     '<hr/>' +
     '<br/>'
@@ -148,9 +148,8 @@ const getDefinitionsSection = trendingUpwardsSymbols => `<br/><br/><div style="t
     '<p style="font-size: 1rem;">(A negative PE ratio means the company is not yet profitable)</p>' +
     `</div>`
 
-const getFooterSection = trendingUpwardsSymbols => '<br/><br/>' +
+const getFooterSection = trendingUpwardsSymbols => '<br/>' +
     `<p style="font-size: 1rem;">Good luck and enjoy the ride!</p><br/>` +
-    '<br/>' +
     `<p style="font-size: 1rem;">We want to hear from YOU! If you enjoy getting these stock picks or have any questions at all, just reply to this email and say hello!</p>` +
     '<div>' +
     '<br/>' +
